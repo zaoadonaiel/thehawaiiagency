@@ -90,7 +90,12 @@ export async function initMotion() {
       delay: inHero(el) ? heroDelay + 0.2 : 0,
     });
     tl.to(el, { clipPath: 'inset(0% 0% 0% 0% round var(--clip-radius, 0px))', duration: 1.6, ease: 'expo.inOut' });
-    if (img) tl.from(img, { scale: 1.25, duration: 2, ease: EASE }, 0);
+    // Explicit set → to (not .from): a refresh can never leave the image zoomed, and the
+    // transform is cleared at the end so the full image shows and CSS hover effects take over.
+    if (img) {
+      gsap.set(img, { scale: 1.2 });
+      tl.to(img, { scale: 1, duration: 2, ease: EASE, clearProps: 'transform' }, 0);
+    }
   });
 
   /* -------------------------------------------------------- parallax */

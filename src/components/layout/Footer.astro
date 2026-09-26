@@ -85,7 +85,10 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="footer__base wrap">
-    <p>© {year} {site.name}. {site.legalLine}. All rights reserved.</p>
+    <p>
+      © {year} {site.name}. {site.legalLine}. All rights reserved.
+      <a href="/sitemap-index.xml" class="u-link footer__sitemap">XML Sitemap</a>
+    </p>
     <p class="footer__meta">
       <span>{site.coordinates.lat} · {site.coordinates.lng}</span>
       <Clock class="footer__clock" />
@@ -239,6 +242,10 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--c-line-light);
     font-size: 0.8125rem;
     color: rgb(255 255 255 / 0.6);
+  }
+  .footer__sitemap {
+    margin-left: 0.75rem;
+    color: rgb(255 255 255 / 0.8);
   }
   .footer__meta {
     display: inline-flex;

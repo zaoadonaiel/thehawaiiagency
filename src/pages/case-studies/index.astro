@@ -16,7 +16,6 @@ const counts = {
   mainland: projects.filter((p) => !p.data.hawaii).length,
 };
 const layouts = ['a', 'b', 'c', 'd', 'e'];
-const ratios: Record<string, string> = { a: '4 / 3', b: '4 / 5', c: '4 / 5', d: '4 / 3', e: '16 / 9' };
 
 const schema = [
   {
@@ -69,7 +68,6 @@ const schema = [
                 <ProjectCard
                   project={p}
                   size={l === 'a' || l === 'e' ? 'l' : 'm'}
-                  ratio={ratios[l]}
                   sizes="(min-width: 1024px) 58vw, 100vw"
                 />
               </li>
@@ -91,7 +89,6 @@ const schema = [
     const items = [...grid.querySelectorAll<HTMLElement>('.cs-item')];
     const status = root.querySelector<HTMLElement>('[data-filter-status]');
     const layouts = ['a', 'b', 'c', 'd', 'e'];
-    const ratios: Record<string, string> = { a: '4 / 3', b: '4 / 5', c: '4 / 5', d: '4 / 3', e: '16 / 9' };
     root.addEventListener('click', (e) => {
       const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter-value]');
       if (!btn) return;
@@ -105,8 +102,6 @@ const schema = [
           // keep the editorial rhythm intact for whatever remains visible
           const l = layouts[n % layouts.length];
           item.dataset.layout = l;
-          const media = item.querySelector<HTMLElement>('.pcard__media');
-          if (media) media.style.aspectRatio = ratios[l];
           item.style.opacity = '1';
           item.style.transform = 'none';
           n++;

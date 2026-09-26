@@ -5,17 +5,16 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   project: CollectionEntry<'projects'>;
   size?: 's' | 'm' | 'l';
-  ratio?: string;
   headingLevel?: 'h2' | 'h3';
   sizes?: string;
 }
-const { project, size = 'm', ratio = '4 / 3', headingLevel: H = 'h3', sizes = '(min-width: 1024px) 40vw, 100vw' } = Astro.props;
+const { project, size = 'm', headingLevel: H = 'h3', sizes = '(min-width: 1024px) 40vw, 100vw' } = Astro.props;
 const d = project.data;
 ---
 
 <article class:list={['pcard', `pcard--${size}`]}>
   <a href={`/case-studies/${project.id}/`} class="pcard__link">
-    <div class="pcard__media" style={`aspect-ratio:${ratio}`}>
+    <div class="pcard__media" style={`aspect-ratio:${d.image.width} / ${d.image.height}`}>
       <Picture
         src={d.image}
         alt={d.imageAlt}

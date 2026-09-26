@@ -31,8 +31,13 @@ const island = all
       featured.map((p, i) => (
         <article class:list={['feat', `feat--${i + 1}`]}>
           <a href={`/case-studies/${p.id}/`} class="feat__link">
-            <div class="feat__media" data-clip style="--clip-radius: 28px">
-              <div class="feat__inner" data-parallax={i === 0 ? '0.12' : '0.2'}>
+            <div
+              class="feat__media"
+              data-clip
+              data-parallax={i === 0 ? '0.06' : '0.1'}
+              style={`--clip-radius: 28px; aspect-ratio: ${p.data.image.width} / ${p.data.image.height}`}
+            >
+              <div class="feat__inner">
                 <Picture
                   src={p.data.image}
                   alt={p.data.imageAlt}
@@ -152,17 +157,13 @@ const island = all
   }
   .feat__media {
     position: relative;
-    aspect-ratio: 4 / 3;
     border-radius: var(--r-l);
     overflow: hidden;
     background: var(--c-sky-100);
   }
-  .feat--1 .feat__media {
-    aspect-ratio: 1 / 1;
-  }
   .feat__inner {
     position: absolute;
-    inset: -6% 0;
+    inset: 0;
   }
   .feat__inner :global(img) {
     width: 100%;

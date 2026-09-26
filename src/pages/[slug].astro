@@ -241,7 +241,7 @@ if (faq) {
           <div class:list={['related__grid', `related__grid--${related.length}`]}>
             {related.map((p, i) => (
               <div data-reveal data-delay={String(i * 0.1)}>
-                <ProjectCard project={p} ratio={i === 0 ? '5 / 4' : '4 / 3'} sizes="(min-width: 1024px) 33vw, 100vw" />
+                <ProjectCard project={p} sizes="(min-width: 1024px) 33vw, 100vw" />
               </div>
             ))}
           </div>
