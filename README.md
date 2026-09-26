@@ -83,9 +83,17 @@ The site is fully static, so no adapter is needed. `_redirects` is generated int
 ### Option B — Cloudflare Workers (static assets)
 
 **Workers & Pages** → **Create** → **Import a repository**. Cloudflare reads `wrangler.jsonc` (assets from
-`./dist`, `404.html` for not-found pages, automatic trailing slashes). Set build command `npm run build` and deploy
-command `npx wrangler deploy`, and add the same environment variables as build variables. `_redirects` and
-`_headers` work the same way.
+`./dist`, `404.html` for not-found pages, automatic trailing slashes). `_redirects` and `_headers` work the same way.
+
+| Setting | Value |
+| --- | --- |
+| Worker name | `thehawaiiagency` (must match `name` in `wrangler.jsonc`) |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Non-production branch deploy command | `npx wrangler versions upload` |
+| Root directory | *(leave empty; **not** `dist`)* |
+| Production branch | `main` |
+| Build variables | `NODE_VERSION=22`, `PUBLIC_FORM_ENDPOINT`, optional `PUBLIC_FORM_ACCESS_KEY` |
 
 ### What happens to the old WordPress URLs
 
