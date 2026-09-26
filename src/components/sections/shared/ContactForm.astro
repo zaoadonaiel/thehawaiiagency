@@ -1,0 +1,203 @@
+---
+/**
+ * Enquiry form — same fields as the original site (Full Name, Email, Phone,
+ * “What service do you need?”). See scripts/core/form.ts for submit behaviour
+ * and .env.example for configuring the endpoint.
+ */
+import Button from '~/components/ui/Button.astro';
+import { site } from '~/data/site';
+
+interface Props {
+  id?: string;
+  tone?: 'light' | 'dark';
+  /** pre-fill the message with the service being viewed */
+  service?: string;
+}
+const { id = 'enquiry', tone = 'light', service } = Astro.props;
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT?.trim();
+const accessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY?.trim();
+const mailto = import.meta.env.PUBLIC_CONTACT_EMAIL?.trim() || site.email;
+const mode = endpoint ? 'endpoint' : 'mailto';
+const f = (name: string) => `${id}-${name}`;
+---
+
+<form
+  class:list={['cform', `cform--${tone}`]}
+  data-contact-form
+  data-mode={mode}
+  data-mailto={mailto}
+  action={endpoint || `mailto:${mailto}`}
+  method="post"
+  enctype={endpoint ? undefined : 'text/plain'}
+  aria-describedby={f('privacy')}
+>
+  {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
+  <input type="hidden" name="subject" value="New enquiry — thehawaiiagency.com" />
+  <input type="hidden" name="from_name" value={site.name} />
+  <div class="cform__hp" aria-hidden="true">
+    <label>Leave this field empty <input type="text" name="botcheck" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <div class="cform__grid">
+    <div class="field">
+      <label for={f('name')}>Full name <span aria-hidden="true">*</span></label>
+      <input id={f('name')} name="name" type="text" autocomplete="name" required aria-describedby={f('name-error')} />
+      <p class="field__error" id={f('name-error')} aria-live="polite"></p>
+    </div>
+    <div class="field">
+      <label for={f('email')}>Email <span aria-hidden="true">*</span></label>
+      <input id={f('email')} name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby={f('email-error')} />
+      <p class="field__error" id={f('email-error')} aria-live="polite"></p>
+    </div>
+    <div class="field">
+      <label for={f('phone')}>Phone <span class="field__opt">optional</span></label>
+      <input id={f('phone')} name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby={f('phone-error')} />
+      <p class="field__error" id={f('phone-error')} aria-live="polite"></p>
+    </div>
+    <div class="field field--full">
+      <label for={f('message')}>What service do you need? <span aria-hidden="true">*</span></label>
+      <textarea id={f('message')} name="message" rows="4" required aria-describedby={f('message-error')}>{service ? `I’m interested in ${service}.` : ''}</textarea>
+      <p class="field__error" id={f('message-error')} aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="cform__foot">
+    <Button type="submit" variant={tone === 'dark' ? 'light' : 'solid'} size="l">
+      {mode === 'endpoint' ? 'Send message' : 'Email your message'}
+    </Button>
+    <p class="cform__privacy t-small" id={f('privacy')}>
+      We will never send your information to any third-party companies, nor will we spam your email with offers. This is
+      strictly to get ahold of our team.
+    </p>
+  </div>
+  <p class="cform__status" role="status" aria-live="polite" data-form-status></p>
+</form>
+
+<style>
+  .cform {
+    --field-bg: var(--c-white);
+    --field-line: var(--c-line-strong);
+    --field-text: var(--c-ink);
+    --field-label: var(--c-ink-3);
+    display: grid;
+    gap: 1.5rem;
+  }
+  .cform--dark {
+    --field-bg: rgb(255 255 255 / 0.06);
+    --field-line: rgb(255 255 255 / 0.22);
+    --field-text: var(--c-white);
+    --field-label: rgb(255 255 255 / 0.7);
+  }
+  .cform__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .cform__grid {
+    display: grid;
+    gap: 1rem 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .cform__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .field:first-child,
+    .field--full {
+      grid-column: 1 / -1;
+    }
+  }
+  .field {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .field label {
+    font-size: 0.875rem;
+    color: var(--field-label);
+  }
+  .field__opt {
+    margin-left: 0.3rem;
+    font-size: 0.75rem;
+    opacity: 0.75;
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid var(--field-line);
+    border-radius: 14px;
+    background: var(--field-bg);
+    color: var(--field-text);
+    font-size: 1rem;
+    line-height: 1.4;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+  .field input:hover,
+  .field textarea:hover {
+    border-color: var(--c-sky-300);
+  }
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+    outline: none;
+    border-color: var(--c-blue);
+    box-shadow: 0 0 0 4px rgb(40 105 178 / 0.18);
+  }
+  .field.has-error input,
+  .field.has-error textarea {
+    border-color: #b42318;
+  }
+  .field__error {
+    min-height: 0;
+    font-size: 0.8125rem;
+    color: #b42318;
+  }
+  .cform--dark .field__error {
+    color: #ffb4a8;
+  }
+  .field__error:empty {
+    display: none;
+  }
+  .cform__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+  }
+  .cform__privacy {
+    flex: 1 1 16rem;
+    max-width: 30rem;
+    font-size: 0.8125rem;
+  }
+  .cform--dark .cform__privacy {
+    color: rgb(255 255 255 / 0.6);
+  }
+  .cform__status:empty {
+    display: none;
+  }
+  .cform__status {
+    padding: 0.9rem 1.1rem;
+    border-radius: 14px;
+    font-size: 0.9375rem;
+    background: var(--c-sky-100);
+    color: var(--c-ink);
+  }
+  .cform__status[data-tone='success'] {
+    background: #e3f4ea;
+    color: #14532d;
+  }
+  .cform__status[data-tone='error'] {
+    background: #fdecea;
+    color: #8a1c12;
+  }
+  .cform[aria-busy='true'] {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+</style>

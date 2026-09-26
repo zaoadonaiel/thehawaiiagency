@@ -1,0 +1,147 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+import Button from '~/components/ui/Button.astro';
+import { site } from '~/data/site';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  path: string;
+}
+const { post, path } = Astro.props;
+const d = post.data;
+const og = await getImage({ src: d.cover, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const fmt = (date: Date) => date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: d.title,
+    description: d.description,
+    datePublished: d.pubDate.toISOString(),
+    dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+    image: new URL(og.src, Astro.site).href,
+    mainEntityOfPage: new URL(path, Astro.site).href,
+    author: { '@id': `${site.url}/#organization` },
+    publisher: { '@id': `${site.url}/#organization` },
+    keywords: d.tags.join(', '),
+  },
+];
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  type="article"
+  image={og.src}
+  imageAlt={d.coverAlt}
+  schema={schema}
+  publishedTime={d.pubDate}
+  modifiedTime={d.updatedDate}
+>
+  <article class="art">
+    <header class="art__head wrap" data-hero>
+      <div data-hero-item>
+        <Breadcrumbs items={[{ label: 'Journal', href: '/blog/' }, { label: d.title, href: path }]} />
+      </div>
+      <p class="t-label art__meta" data-hero-item>
+        <span>{d.category}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={d.pubDate.toISOString()}>{fmt(d.pubDate)}</time>
+      </p>
+      <h1 class="art__title" data-split>{d.title}</h1>
+      <p class="t-lead art__desc" data-hero-item>{d.description}</p>
+    </header>
+
+    <figure class="art__cover wrap">
+      <div class="art__cover-frame" data-clip style="--clip-radius: 28px">
+        <Picture src={d.cover} alt={d.coverAlt} widths={[640, 1000, 1400]} sizes="(min-width: 1100px) 1100px, 100vw" formats={['avif']} fallbackFormat="webp" loading="eager" />
+      </div>
+    </figure>
+
+    <div class="art__body wrap--narrow">
+      <aside class="art__aside">
+        <p class="t-label">Filed under</p>
+        <ul role="list">
+          {d.tags.map((t) => <li class="chip">{t}</li>)}
+        </ul>
+        <Button href="/seo/" variant="ghost">Our SEO services</Button>
+      </aside>
+      <div class="prose art__prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .art__head {
+    display: grid;
+    gap: 1.25rem;
+    padding: calc(var(--header-h) + 1.5rem) 0 var(--space-l);
+  }
+  .art__meta {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: clamp(1rem, 4vh, 3rem);
+  }
+  .art__title {
+    font-size: var(--fs-h1);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    max-width: 18ch;
+  }
+  .art__desc {
+    max-width: 40rem;
+    color: var(--c-ink-2);
+  }
+  .art__cover-frame {
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-l);
+    overflow: hidden;
+    background: var(--c-sky-100);
+  }
+  .art__cover-frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .art__body {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+    padding-block: var(--space-xl) var(--space-section);
+  }
+  .art__aside {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .art__aside ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .art__aside :global(.btn) {
+    justify-self: start;
+  }
+  .art__prose {
+    font-size: 1.125rem;
+  }
+  .art__prose :global(p:first-child) {
+    font-size: var(--fs-lead);
+    line-height: 1.45;
+    color: var(--c-ink);
+  }
+  @media (min-width: 1024px) {
+    .art__body {
+      grid-template-columns: 14rem 1fr;
+    }
+    .art__aside {
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+  }
+</style>

@@ -1,0 +1,178 @@
+---
+import { Picture } from 'astro:assets';
+import tide from '~/assets/images/art/tide-lines.webp';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import { hostingHighlights, hostingPlans } from '~/data/hosting';
+
+const plans = hostingPlans.slice(0, 3);
+---
+
+<section class="host section" aria-labelledby="host-title">
+  <div class="wrap host__grid">
+    <div class="host__lead">
+      <Eyebrow index="06">Award-winning hosting</Eyebrow>
+      <h2 id="host-title" class="host__title" data-split>
+        Fully managed hosting from <span class="t-accent">$1/day.</span>
+      </h2>
+      <p class="t-body" data-reveal>
+        When we host your website, think of it as renting a beautiful office space that comes with a warranty. If
+        anything goes wrong with your website, we fix it for you at no cost.
+      </p>
+      <Button href="/website-hosting/">Compare hosting plans</Button>
+    </div>
+
+    <div class="host__panel">
+      <div class="host__bg" aria-hidden="true">
+        <Picture src={tide} alt="" widths={[640, 1100]} sizes="(min-width: 1024px) 50vw, 100vw" formats={['avif']} fallbackFormat="webp" loading="lazy" />
+      </div>
+      <ul role="list" class="host__plans" data-stagger>
+        {
+          plans.map((p) => (
+            <li>
+              <a href={`/website-hosting/#plan-${p.id}`} class="plan">
+                <span class="plan__name">{p.name}</span>
+                <span class="plan__kind">{p.kind}</span>
+                <span class="plan__price">
+                  <strong>{p.price}</strong>/mo
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <ul role="list" class="host__highlights">
+      {
+        hostingHighlights.map((h) => (
+          <li data-reveal>
+            <span data-line class="host__rule" aria-hidden="true" />
+            <p class="t-label">{h.kicker}</p>
+            <h3 class="t-h4">{h.title}</h3>
+            <p class="t-small">{h.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .host__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .host__lead {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    max-width: 36rem;
+  }
+  .host__lead :global(.btn) {
+    justify-self: start;
+  }
+  .host__title {
+    font-size: var(--fs-h1);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  .host__panel {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: 26rem;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    border-radius: var(--r-l);
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--c-navy);
+  }
+  .host__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .host__bg :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .host__bg :global(picture) {
+    display: contents;
+  }
+  .host__plans {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .plan {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.1rem 1rem;
+    align-items: baseline;
+    padding: 1rem 1.25rem;
+    border-radius: var(--r-m);
+    background: rgb(255 255 255 / 0.08);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    color: var(--c-white);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.35s, transform 0.5s var(--ease-out);
+  }
+  .plan:hover,
+  .plan:focus-visible {
+    background: rgb(255 255 255 / 0.16);
+    transform: translateX(6px);
+  }
+  .plan__name {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .plan__kind {
+    grid-row: 2;
+    font-size: 0.8125rem;
+    color: rgb(255 255 255 / 0.66);
+  }
+  .plan__price {
+    grid-row: 1 / span 2;
+    font-size: 0.9375rem;
+    color: rgb(255 255 255 / 0.7);
+  }
+  .plan__price strong {
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    color: var(--c-white);
+  }
+  .host__highlights {
+    display: grid;
+    gap: 2rem var(--gutter);
+  }
+  .host__highlights li {
+    display: grid;
+    gap: 0.6rem;
+    align-content: start;
+  }
+  .host__rule {
+    display: block;
+    height: 1px;
+    background: var(--c-ink);
+    opacity: 0.4;
+    margin-bottom: 0.75rem;
+  }
+  @media (min-width: 1024px) {
+    .host__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .host__lead {
+      grid-column: 1 / 6;
+    }
+    .host__panel {
+      grid-column: 7 / -1;
+    }
+    .host__highlights {
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

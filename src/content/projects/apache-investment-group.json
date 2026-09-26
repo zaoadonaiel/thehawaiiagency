@@ -1,0 +1,25 @@
+{
+  "name": "Apache Investment Group",
+  "domain": "apacheinvestmentsgroup.com",
+  "url": "https://apacheinvestmentsgroup.com",
+  "location": "Goodyear, AZ",
+  "image": "../../assets/images/projects/apache-investment-group.jpg",
+  "imageAlt": "Apache Investment Group website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Responsive Design"
+  ],
+  "body": [
+    "We partnered with Apache Investment Group, a respected real estate and property management company based in Phoenix, AZ, to create a professional and user-friendly website that reflects their commitment to excellence. As a trusted name in residential, commercial, and investment real estate since their founding, Apache needed a modern digital presence to match their growing reputation.",
+    "The new website showcases their full range of services — from buying and selling homes to managing rental properties — with a clean, intuitive layout optimized for both desktop and mobile. With bold visuals, clear navigation, and integrated contact features, clients can now easily explore listings, reach out, and stay connected.",
+    "Apache Investment Group is now better positioned online to welcome new clients and serve the Phoenix and West Valley communities with the same care and professionalism they’re known for."
+  ],
+  "result": "Traffic increased by 31% in the first 60 days.",
+  "metric": {
+    "value": "+31%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 13,
+  "featured": false,
+  "hawaii": false
+}

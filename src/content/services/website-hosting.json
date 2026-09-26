@@ -1,0 +1,86 @@
+{
+  "order": 10,
+  "name": "Web Hosting",
+  "short": "Web Hosting",
+  "seoTitle": "Web Hosting Hawaii | Award-Winning Fully Managed Servers",
+  "seoDescription": "Award-winning, fully managed servers for Hawaii businesses — backups, uptime monitoring, plugin updates, CDN & SSL and 24/7 support. Fully managed hosting from $1/day.",
+  "heroTitle": "Web hosting.",
+  "heroTagline": "Award-winning servers for Hawaii businesses.",
+  "summary": "Fully managed VPS and dedicated servers with backups, uptime monitoring, plugin and theme updates, CDN & SSL and 24/7 support — from $1/day.",
+  "intro": {
+    "heading": "Fully managed hosting starting at $1/day",
+    "paragraphs": [
+      "When we host your website, think of it as renting a beautiful office space from us that comes with a warranty. If anything goes wrong with your website, we fix it for you at no cost. We take backups, monitor the uptime, update plugins and update you on this on a monthly basis.",
+      "At The Hawaii Agency, we take pride in our award-winning web hosting services. Our servers offer exceptional speed and affordability, while our fully managed hosting ensures a hassle-free experience for our clients. From backups to uptime monitoring, we’ve got you covered 24/7, allowing you to focus on growing your business while we handle the technical details."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "German-quality servers",
+      "heading": "Stability, global access and strict processes",
+      "paragraphs": [
+        "We are committed to providing top-quality servers with global access, and our data centers in Germany are an essential part of this endeavor. Our primary focus is on maintaining the stability of our data centers, which involves implementing stringent internal processes and delivering exceptional customer support."
+      ]
+    },
+    {
+      "kicker": "World-renowned data protection",
+      "heading": "Governed by some of the strictest laws in the world",
+      "paragraphs": [
+        "Our servers are governed by some of the most stringent data protection laws in the world, including the General Data Protection Regulation (GDPR). This provides an added layer of assurance that sensitive data is protected and not compromised."
+      ]
+    },
+    {
+      "kicker": "24/7 customer support",
+      "heading": "Help whenever you need it",
+      "paragraphs": [
+        "With our 24/7 phone and email customer support, you can be assured that you will always have access to the help you need. Whether you have technical difficulties or account-related questions, our team is always available to assist you. Continuous monitoring of our data center is a top priority throughout the year to ensure the absence of cyber threats and vulnerabilities. Our dedicated team works tirelessly to keep your OS and plugins up to date."
+      ]
+    },
+    {
+      "kicker": "Satisfaction promise",
+      "heading": "Premium support at every price point",
+      "paragraphs": [
+        "We believe that every customer is entitled to premium support, regardless of whether they spend thousands of dollars or just $30 a month. For this reason, we have established strict quality standards to ensure that we always meet your satisfaction."
+      ]
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Fully Managed",
+      "text": "As a hosting provider, we handle all the technical aspects of managing a website, app, or cloud software. This includes configuring and setting up the server, installing and maintaining the required software, providing technical support, and ensuring uptime and security."
+    },
+    {
+      "title": "Reliable uptime",
+      "text": "We offer reliable uptime for your website, ensuring that it is accessible to your visitors 24/7. Downtime can result in lost business and harm your reputation, which is why it is crucial to select a hosting company that provides a high level of uptime."
+    },
+    {
+      "title": "Speed & Performance",
+      "text": "Hosting your website with us can enhance its speed and performance, resulting in a better user experience for your visitors. Fast loading times can also help to improve your search engine rankings, as search engines give priority to websites that load quickly."
+    },
+    {
+      "title": "Security",
+      "text": "Security is our top priority, and we offer measures to safeguard your website and its data from cyber threats. This includes regular backups, software updates, and other security features that help to minimize the risk of data breaches and hacking attempts."
+    },
+    {
+      "title": "Scalability",
+      "text": "We understand that your business requirements may change over time, which is why we offer flexible hosting plans that can be easily scaled up or down to meet your needs. You only pay for the resources that you actually use and can easily adapt to changes in traffic and demand."
+    },
+    {
+      "title": "Quality Hardware",
+      "text": "We pride ourselves on using cutting-edge hardware in our data center to power our dedicated and cloud server systems. Our servers are of the highest quality German craftsmanship and are frequently updated by our team and partners, all without interrupting your website, application, or software."
+    }
+  ],
+  "module": "hosting",
+  "cta": {
+    "heading": "Not sure which plan fits?",
+    "paragraphs": [
+      "Tell us about your website, app or software and we’ll recommend the right server — and handle the migration for you."
+    ]
+  },
+  "faq": "hosting",
+  "related": [
+    "stockwatchindex",
+    "dependable-overhead-door"
+  ],
+  "image": "../../assets/images/art/service-website-hosting.webp"
+}

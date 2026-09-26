@@ -1,0 +1,111 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHero from '~/components/sections/shared/PageHero.astro';
+import MeetingOptions from '~/components/sections/shared/MeetingOptions.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import { site } from '~/data/site';
+---
+
+<BaseLayout
+  title="Let’s Meet — Schedule a Meeting | The Hawaii Agency"
+  description="Schedule a meeting with The Hawaii Agency. Book a free 20-minute consultation, a project-in-development session, or a real-time work meeting via Google Meet or phone."
+  footerCta={false}
+>
+  <PageHero
+    eyebrow="Let’s meet"
+    title="Schedule a meeting."
+    lead="New and existing clients can book a meeting below. We can work via Google Meet (similar to a Zoom call) or a phone call."
+    crumbs={[{ label: 'Let’s Meet', href: '/lets-meet/' }]}
+    contour="summit"
+  >
+    <p class="lm-phone">
+      <span class="t-label">Or call</span>
+      <a href={site.phone.href}>{site.phone.display}</a>
+    </p>
+  </PageHero>
+
+  <section class="section--tight" aria-label="Meeting types">
+    <div class="wrap">
+      <MeetingOptions size="large" />
+    </div>
+  </section>
+
+  <section class="section lm-how" aria-labelledby="lm-how-title">
+    <div class="wrap lm-how__grid">
+      <div>
+        <Eyebrow>What to expect</Eyebrow>
+        <h2 id="lm-how-title" class="t-h2" data-split>Clear, constant communication — on screen or in person.</h2>
+      </div>
+      <ul role="list" class="lm-how__list" data-stagger>
+        <li>
+          <h3 class="t-h4">Screen sharing</h3>
+          <p class="t-small">
+            We offer screen sharing during our video calls. By allowing clients to watch us work in real time, we save
+            valuable time and energy while ensuring everyone is on the same page.
+          </p>
+        </li>
+        <li>
+          <h3 class="t-h4">Quick turnaround</h3>
+          <p class="t-small">
+            Unlike other agencies that may take days to respond to your inquiries, we understand the importance of
+            timely communication.
+          </p>
+        </li>
+        <li>
+          <h3 class="t-h4">Work with the founder</h3>
+          <p class="t-small">
+            You will be working with Davey directly on every project — whether it’s an in-person meeting or a virtual
+            screen share session.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap lm-how__cta">
+      <Button href="/contact/" variant="ghost">Prefer to send a message?</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lm-phone {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .lm-phone a {
+    font-size: var(--fs-h2);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--c-blue);
+  }
+  .lm-phone a:hover {
+    color: var(--c-navy);
+  }
+  .lm-how__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .lm-how__grid h2 {
+    margin-top: 1.25rem;
+    max-width: 18ch;
+  }
+  .lm-how__list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .lm-how__list li {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .lm-how__cta {
+    margin-top: var(--space-l);
+  }
+  @media (min-width: 1024px) {
+    .lm-how__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

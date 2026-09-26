@@ -1,0 +1,25 @@
+{
+  "name": "Care Senior Placement",
+  "domain": "careseniorplacement.com",
+  "url": "https://careseniorplacement.com",
+  "location": "Los Angeles, CA",
+  "image": "../../assets/images/projects/care-senior-placement.jpg",
+  "imageAlt": "Care Senior Placement website shown on a desktop display",
+  "services": [
+    "Web Presence",
+    "UX"
+  ],
+  "body": [
+    "Care Senior Placement offers a vital service for families navigating the emotional and logistical complexities of finding the right senior care — and we’re proud to support them with a streamlined digital experience that reflects their mission of compassion and clarity.",
+    "While we didn’t build their internal placement process, we helped enhance their web presence, creating a user-friendly platform where families can easily search by city or zip code, explore care homes, and request a free consultation. Their modern site is built to reduce stress, guide visitors step-by-step, and highlight the incredible concierge-style support they provide.",
+    "If you’re in Los Angeles, Orange County, or the surrounding areas, Care Senior Placement is a trusted, no-cost partner in finding the right care for your loved one."
+  ],
+  "result": "Traffic increased by 33% in the first 60 days.",
+  "metric": {
+    "value": "+33%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 19,
+  "featured": false,
+  "hawaii": false
+}

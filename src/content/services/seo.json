@@ -1,0 +1,85 @@
+{
+  "order": 4,
+  "name": "SEO Services",
+  "short": "SEO",
+  "seoTitle": "SEO Hawaii | Search Engine Optimization Services",
+  "seoDescription": "Efficient & effective search engine optimization for new and established Hawaii businesses — keyword research, on-page and technical SEO, link building and local SEO.",
+  "heroTitle": "Hawaii SEO services.",
+  "heroTagline": "Efficient & effective search engine optimization.",
+  "summary": "Keyword research, content and on-page optimization, technical SEO, schema, site speed and local SEO — built into your site from the foundation up.",
+  "intro": {
+    "heading": "SEO for new & established businesses",
+    "paragraphs": [
+      "In the current era, search engines are evaluating websites based on factors such as keyword density and the presence of authoritative content. Therefore, it is crucial to have a solid SEO strategy in place. Are you confident in the quality of your website’s SEO?",
+      "Search Engine Optimization (SEO) is a collection of techniques, including keyword research, content optimization, and link building, that improve a website’s visibility and ranking on search engine results pages (SERPs). Implementing SEO strategies can benefit a website in the following ways:"
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Increased visibility and traffic",
+      "text": "SEO can enhance a website’s SERP ranking, making it more visible and attracting more clicks from users."
+    },
+    {
+      "title": "Targeted traffic",
+      "text": "By optimizing content and keywords for specific search terms, SEO can attract more relevant and targeted traffic to a website, increasing the likelihood that users will be interested in the products or services offered."
+    },
+    {
+      "title": "Improved user experience",
+      "text": "SEO techniques like optimizing page speed and improving site navigation can improve the overall user experience on a website, leading to higher engagement, conversion rates, and repeat visits."
+    },
+    {
+      "title": "Cost-effectiveness",
+      "text": "Compared to other forms of digital marketing, such as paid advertising, SEO can be a more cost-effective way to improve a website’s visibility and attract new customers. Although SEO requires an initial investment of time and resources, the long-term benefits can outweigh the costs."
+    }
+  ],
+  "sections": [
+    {
+      "kicker": "Benefits of our SEO",
+      "heading": "Unlock the full potential of your online presence",
+      "paragraphs": [
+        "Our tailored strategies are designed to elevate your website’s visibility, driving increased traffic and conversions. By optimizing your site’s structure, content, and performance, we ensure that you rank higher in search engine results, reaching more potential customers. With our expertise in local SEO, we help businesses in Hawaii connect with their target audience effectively. From keyword research and on-page optimization to off-page link building and analytics tracking, we provide a complete SEO solution tailored to your needs.",
+        "We understand the intricacies of SEO and stay ahead of the curve by constantly monitoring and adapting to Google’s algorithm updates. While many agencies claim to know SEO, our track record speaks for itself, especially in the challenging market of Hawaii. Our team employs proven strategies and tactics, including keyword research, content optimization, and technical SEO, to ensure sustainable growth for our clients."
+      ]
+    },
+    {
+      "kicker": "Why choose our SEO services",
+      "heading": "SEO is like tending a garden",
+      "paragraphs": [
+        "Despite having years of experience and an in-depth understanding of the evolution of SEO, it’s crucial to understand that SEO is not a one-and-done event, but a continuous process. Our early involvement in SEO provides us an edge over newer companies in the industry, but maintaining high-quality SEO requires ongoing optimization, regular maintenance, and constant care to achieve optimal results.",
+        "SEO is similar to tending a garden, which requires consistent attention, fresh air, and water to flourish. Similarly, SEO needs regular optimization and continuous attention to thrive."
+      ]
+    },
+    {
+      "kicker": "Complete search engine optimization",
+      "heading": "SEO built into the foundation",
+      "paragraphs": [
+        "Our expertise in SEO extends beyond just optimizing existing websites. We specialize in building websites from scratch, whether it’s custom-coded, on WordPress, Shopify, or other platforms. This comprehensive approach allows us to integrate SEO best practices into the foundation of the website, ensuring optimal performance from the start. Unlike other agencies that focus solely on surface-level optimization, we understand that the technical aspects of website development play a crucial role in search engine rankings.",
+        "From implementing schema markup to optimizing site speed and mobile responsiveness, we leave no stone unturned in our quest to maximize organic visibility. With our proven methods and attention to detail, we not only help our clients achieve higher rankings but also maintain their positions over time, providing long-term value and success in the digital landscape."
+      ],
+      "tags": [
+        "Keyword research",
+        "On-page optimization",
+        "Technical SEO",
+        "Schema markup",
+        "Site speed",
+        "Mobile responsiveness",
+        "Link building",
+        "Local SEO",
+        "Analytics tracking"
+      ]
+    }
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "Let’s set up a free consultation to discuss your specific needs and goals. Our team will work with you to create a custom SEO package tailored to your business, ensuring that you get the most out of your online presence."
+    ]
+  },
+  "faq": "seo",
+  "related": [
+    "dependable-overhead-door",
+    "trash-bros-arizona",
+    "cleaning-paradise-hawaii"
+  ],
+  "image": "../../assets/images/art/service-seo.webp"
+}

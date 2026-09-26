@@ -1,0 +1,33 @@
+---
+/** Live Honolulu time (HST). Server renders a neutral label; JS fills the time. */
+interface Props {
+  class?: string;
+  prefix?: string;
+}
+const { class: className, prefix = 'Honolulu' } = Astro.props;
+---
+
+<span class:list={['clock', className]}>
+  <span class="clock__dot" aria-hidden="true"></span>
+  <span>{prefix}</span>
+  <time class="clock__time t-num" data-clock>HST</time>
+</span>
+
+<style>
+  .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
+    color: var(--c-ink-3);
+    white-space: nowrap;
+  }
+  .clock__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c-blue);
+    animation: pulse-dot 2.4s var(--ease-out) infinite;
+  }
+</style>

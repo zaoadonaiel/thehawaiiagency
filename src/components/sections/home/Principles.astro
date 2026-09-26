@@ -1,0 +1,111 @@
+---
+/** “Priority Service for Every Client” — sticky title, principles scroll past. */
+import oahu from '~/assets/art/contours-oahu.svg?raw';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import { principles } from '~/data/studio';
+
+interface Props {
+  index?: string;
+}
+const { index = '05' } = Astro.props;
+---
+
+<section class="prin section surface-navy" aria-labelledby="prin-title" data-draw-trigger>
+  <div class="prin__contours" aria-hidden="true" set:html={oahu.replace('<svg ', '<svg data-draw ')} />
+  <div class="wrap prin__grid">
+    <div class="prin__head">
+      <Eyebrow index={index}>How we work</Eyebrow>
+      <h2 id="prin-title" class="t-h1" data-split>Priority service for every client.</h2>
+      <p class="t-body">
+        Whether you’re a small mom-and-pop shop or a large enterprise, we prioritize your needs and provide quick
+        turnaround times to ensure your success.
+      </p>
+    </div>
+    <ol class="prin__list" role="list">
+      {
+        principles.map((p, i) => (
+          <li class="prin__item" data-reveal>
+            <span class="prin__num t-num" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div class="prin__copy">
+              <p class="t-label">{p.kicker}</p>
+              <h3 class="t-h3">{p.title}</h3>
+              <p class="t-body">{p.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .prin {
+    overflow: clip;
+  }
+  .prin__contours {
+    position: absolute;
+    inset: 0;
+    color: var(--c-sky-300);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  .prin__contours :global(svg) {
+    position: absolute;
+    right: -10%;
+    top: 50%;
+    width: min(120%, 1400px);
+    height: auto;
+    transform: translateY(-50%);
+  }
+  .prin__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .prin__head {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    max-width: 34rem;
+  }
+  .prin__list {
+    display: grid;
+  }
+  .prin__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem clamp(1.25rem, 3vw, 3rem);
+    padding-block: 2.25rem;
+    border-top: 1px solid var(--c-line-light);
+  }
+  .prin__item:last-child {
+    border-bottom: 1px solid var(--c-line-light);
+  }
+  .prin__num {
+    font-size: clamp(2.5rem, 1.8rem + 2.4vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--c-sky-300);
+  }
+  .prin__copy {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 36rem;
+  }
+  @media (min-width: 1024px) {
+    .prin__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .prin__head {
+      grid-column: 1 / 6;
+      position: sticky;
+      top: calc(var(--header-h) + 3rem);
+    }
+    .prin__list {
+      grid-column: 7 / -1;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+/**
+ * Brand wordmark: the “tide lines” mark (three horizon strokes that step in,
+ * like swells reaching shore) set beside the name in Google Sans.
+ */
+interface Props {
+  class?: string;
+  compact?: boolean;
+}
+const { class: className, compact = false } = Astro.props;
+---
+
+<span class:list={['wordmark', className, { 'wordmark--compact': compact }]}>
+  <svg class="wordmark__mark" viewBox="0 0 64 64" aria-hidden="true">
+    <rect width="64" height="64" rx="15" fill="currentColor"></rect>
+    <rect class="wm-l1" x="12.8" y="19.2" width="38.4" height="6.4" rx="3.2"></rect>
+    <rect class="wm-l2" x="12.8" y="29.4" width="28.2" height="6.4" rx="3.2"></rect>
+    <rect class="wm-l3" x="12.8" y="39.7" width="17.9" height="6.4" rx="3.2"></rect>
+  </svg>
+  <span class="wordmark__text">The Hawaii Agency</span>
+</span>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--c-navy);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .wordmark__mark {
+    width: 1.9rem;
+    height: 1.9rem;
+    flex: none;
+    color: var(--c-navy);
+  }
+  .wm-l1 {
+    fill: var(--c-powder);
+  }
+  .wm-l2 {
+    fill: var(--c-sky-300);
+  }
+  .wm-l3 {
+    fill: #4e8fd6;
+  }
+  .wm-l1,
+  .wm-l2,
+  .wm-l3 {
+    transform-box: fill-box;
+    transform-origin: left center;
+    transition: transform 0.6s var(--ease-out);
+  }
+  :global(a:hover) > .wordmark .wm-l2 {
+    transform: scaleX(1.36);
+  }
+  :global(a:hover) > .wordmark .wm-l3 {
+    transform: scaleX(2.14);
+  }
+  .wordmark--compact .wordmark__text {
+    display: none;
+  }
+</style>

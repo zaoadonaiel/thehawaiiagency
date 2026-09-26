@@ -1,0 +1,21 @@
+{
+  "name": "Commercial Capital Partner",
+  "domain": "commercialcapitalpartner.com",
+  "url": "https://commercialcapitalpartner.com",
+  "location": "Rancho Cucamonga, CA",
+  "image": "../../assets/images/projects/commercial-capital-partner.jpg",
+  "imageAlt": "Commercial Capital Partner website shown on a desktop display",
+  "services": [
+    "Web Design"
+  ],
+  "body": [],
+  "result": "Traffic increased by 20% in the first 60 days.",
+  "metric": {
+    "value": "+20%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 26,
+  "featured": false,
+  "hawaii": false,
+  "note": "A full write-up for this project is coming soon."
+}

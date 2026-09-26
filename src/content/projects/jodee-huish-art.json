@@ -1,0 +1,25 @@
+{
+  "name": "Jodee Huish",
+  "domain": "jodeehuishart.com",
+  "url": "https://jodeehuishart.com",
+  "location": "Scottsdale, AZ",
+  "image": "../../assets/images/projects/jodee-huish-art.jpg",
+  "imageAlt": "Jodee Huish website shown on a desktop display",
+  "services": [
+    "Custom Website",
+    "Online Store",
+    "Video"
+  ],
+  "body": [
+    "We built a fully custom website for Jodee Huish, an incredible artist based in Arizona, who needed a digital space to showcase her work.",
+    "Now, her art comes to life with interactive video previews, a beautifully designed online store, and a seamless platform where clients can explore her portfolio, learn her story, and easily purchase her pieces. For Jodee, the site is more than a gallery — it’s a go-to destination that finally reflects the quality and emotion of her work."
+  ],
+  "result": "Traffic increased by 13% in the first 60 days.",
+  "metric": {
+    "value": "+13%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 12,
+  "featured": false,
+  "hawaii": false
+}

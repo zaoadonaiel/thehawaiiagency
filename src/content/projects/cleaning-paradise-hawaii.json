@@ -1,0 +1,25 @@
+{
+  "name": "Cleaning Paradise Hawaii",
+  "domain": "cleaningparadisehawaii.com",
+  "url": "https://cleaningparadisehawaii.com",
+  "location": "Kailua, HI",
+  "image": "../../assets/images/projects/cleaning-paradise-hawaii.jpg",
+  "imageAlt": "Cleaning Paradise Hawaii website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Quote Forms",
+    "Ongoing Support"
+  ],
+  "body": [
+    "Cleaning Paradise Hawaii has become a go-to name for professional home and commercial cleaning across Oahu — and we’re proud to support their growth behind the scenes. While their exceptional team handles the spotless transformations, we’ve helped enhance their online presence with a fast, reliable website that’s easy for clients to navigate and request quotes.",
+    "With a streamlined quote form, intuitive service details, and prominently featured five-star reviews, this site delivers a strong user experience and high conversion rates. They’ve seen consistent organic traffic thanks to their niche offering and our ongoing digital support. It’s a great example of how great service meets great tech — and why clients trust us to help them shine online."
+  ],
+  "result": "Traffic increased by 79% in the first 60 days.",
+  "metric": {
+    "value": "+79%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 7,
+  "featured": false,
+  "hawaii": true
+}

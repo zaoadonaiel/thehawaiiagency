@@ -1,0 +1,25 @@
+{
+  "name": "Silicon Valley Mariachi Festival",
+  "domain": "sv-mariachifest.com",
+  "url": "https://sv-mariachifest.com",
+  "location": "San Jose, CA",
+  "image": "../../assets/images/projects/silicon-valley-mariachi-festival.jpg",
+  "imageAlt": "Silicon Valley Mariachi Festival website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Web Development",
+    "Ticket Integration"
+  ],
+  "body": [
+    "We’ve had the honor of designing and developing the Silicon Valley Mariachi Festival website two years in a row. Their team continues to choose us because of our fast, real-time collaboration style — working side-by-side via screenshare to bring ideas to life instantly.",
+    "From event details to ticket integration and vibrant visuals, we helped create a site that captures the energy of the festival while making it easy for attendees to engage, explore, and get involved."
+  ],
+  "result": "Return client who sold 2,000 tickets for the 2024 festival, and has now tripled in sales for 2025 with the new website.",
+  "metric": {
+    "value": "3×",
+    "label": "ticket sales for 2025, after 2,000 tickets sold in 2024"
+  },
+  "order": 5,
+  "featured": false,
+  "hawaii": false
+}

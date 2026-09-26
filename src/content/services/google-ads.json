@@ -1,0 +1,59 @@
+{
+  "order": 3,
+  "name": "Google Ads Management",
+  "short": "Google Ads",
+  "seoTitle": "Google Ads Management Hawaii | PPC Agency",
+  "seoDescription": "Hawaii Google Ads PPC agency — campaign creation, competitor analysis, display ads and monthly keyword optimization and reporting that turn ad spend into revenue.",
+  "heroTitle": "Google Ads management.",
+  "heroTagline": "Campaign creation & monthly optimization.",
+  "summary": "Competitor analysis, campaign creation, display ads and monthly keyword optimization and reporting — so every click is working for you.",
+  "intro": {
+    "heading": "Hawaii Google Ads PPC agency",
+    "paragraphs": [
+      "We specialize in creating and implementing highly effective Google Ads campaigns that drive conversions and boost revenue for businesses of all sizes. We take a results-driven approach that combines innovative strategies with unwavering dedication to our clients’ success.",
+      "Our process begins with a thorough analysis of your competitors to gain insights into your industry and identify areas for differentiation. Armed with this knowledge, we tailor your Google Ads campaigns to resonate with your target audience and meet your specific business goals.",
+      "We’re experts in display ad creation, and our visually appealing, effective ads help to build brand awareness and capture your audience’s attention. Our monthly keyword optimization and reporting ensures that your campaign is always performing at its peak, helping you stay ahead of the competition.",
+      "Don’t settle for a lackluster Google Ads campaign. Choose a partner that is fully committed to your success — and achieve more clicks, more conversions, and more revenue through Google Ads."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "What is PPC?",
+      "heading": "You only pay when your ad is clicked",
+      "paragraphs": [
+        "Pay per click (PPC) advertising with Google Ads allows businesses to bid on keywords relevant to their target audience. Advertisers only pay when their ad is clicked, making it a cost-effective way to drive traffic to their website and generate leads.",
+        "At The Hawaii Agency, we specialize in managing PPC campaigns for businesses in Hawaii, ensuring optimal budgeting, monthly reporting, and continuous optimization to maximize ROI. Our team conducts thorough keyword research, creates compelling ad copy, and strategically targets ads to reach the right audience. With our expertise in the unique market of Hawaii, we tailor campaigns to local preferences and trends.",
+        "It’s crucial for businesses to understand that starting a Google Ads campaign on their own can lead to wasted money and time. Without the expertise and dedication required to manage a campaign effectively, businesses risk attracting low-quality clicks that won’t convert into customers. By partnering with us, businesses can save time and resources while maximizing the return on their advertising investment."
+      ]
+    },
+    {
+      "kicker": "Business conversions",
+      "heading": "Your budget, allocated wisely",
+      "paragraphs": [
+        "Our clients have experienced an increase in conversion rates after entrusting us with their Google Ads campaigns. Previously, these businesses managed their own accounts, but our optimization expertise enabled them to maximize their advertising spend. It’s crucial to have a dedicated team overseeing your campaigns because Google’s primary goal is to maximize their revenue. Our team ensures that your budget is allocated wisely and that you reach your target audience with relevant keywords.",
+        "Google Ads can be a highly effective tool to get your business noticed quickly, as your ad will appear at the top of relevant Google search results. We offer a range of services to give your campaign the boost it needs, from keyword research and ad creation to ongoing optimization and reporting. Our experienced team works closely with you to understand your business goals and tailor your campaign accordingly."
+      ],
+      "tags": [
+        "Competitor analysis",
+        "Keyword research",
+        "Ad copy",
+        "Display ads",
+        "Monthly optimization",
+        "Monthly reporting"
+      ]
+    }
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "Advertising on Google can be a highly cost-effective strategy to increase your business’s visibility to thousands of potential customers. Our team has the expertise to create, optimize, and deliver successful Google Ads campaigns that help your business achieve its marketing goals. If you want to build a successful Google Ads campaign, give us a call and we’ll give you a free consultation!"
+    ]
+  },
+  "faq": "advertising",
+  "related": [
+    "als-upholstery",
+    "peace-of-maui",
+    "kauai-healing-massage"
+  ],
+  "image": "../../assets/images/art/service-google-ads.webp"
+}

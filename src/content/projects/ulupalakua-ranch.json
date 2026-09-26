@@ -1,0 +1,26 @@
+{
+  "name": "Ulupalakua Ranch",
+  "domain": "ulupalakuaranch.com",
+  "url": "https://ulupalakuaranch.com",
+  "location": "Kula, HI",
+  "image": "../../assets/images/projects/ulupalakua-ranch.jpg",
+  "imageAlt": "Ulupalakua Ranch website shown on a desktop display",
+  "services": [
+    "Website Redesign",
+    "Creative Direction",
+    "Video"
+  ],
+  "body": [
+    "Ulupalakua Ranch in Maui is a place rich with history, culture, and deep Hawaiian roots — and we were honored to help bring that story to life through a full website redesign. While the team has recently made a few updates, they’ve proudly maintained the original creative direction we developed, which still sets the tone and soul of the site today.",
+    "One of the most powerful elements we created is a video about the ranch’s legacy, featuring a heartfelt interview with a Native Hawaiian man who has lived and worked on the land for generations. From the music to the visuals, it captures the spirit of Ulupalakua with authenticity and respect.",
+    "We encourage you to visit their site and experience it for yourself — the video alone is worth the trip. It’s a blend of storytelling, culture, and design that continues to resonate with locals and visitors alike."
+  ],
+  "result": "Traffic increased by 54% in the first 60 days.",
+  "metric": {
+    "value": "+54%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 3,
+  "featured": false,
+  "hawaii": true
+}

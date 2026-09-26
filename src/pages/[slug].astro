@@ -1,0 +1,698 @@
+---
+/**
+ * Service pages live at the original root URLs (/web-design/, /seo/ …).
+ * One data-driven template, but each page composes the modules its content
+ * calls for: benefits, steps, industry list, pricing, plans, FAQs, related work.
+ */
+import type { GetStaticPaths } from 'astro';
+import { Picture } from 'astro:assets';
+import { getCollection, getEntries, type CollectionEntry } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import FaqList from '~/components/sections/shared/FaqList.astro';
+import ProjectCard from '~/components/sections/shared/ProjectCard.astro';
+import EnquirySection from '~/components/sections/shared/EnquirySection.astro';
+import HostingPlans from '~/components/sections/service/HostingPlans.astro';
+import SocialPlans from '~/components/sections/service/SocialPlans.astro';
+import { faqGroups } from '~/data/faqs';
+import { site } from '~/data/site';
+
+export const getStaticPaths = (async () => {
+  const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+  return services.map((service, i) => ({
+    params: { slug: service.id },
+    props: { service, next: services[(i + 1) % services.length], index: i + 1, total: services.length },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  service: CollectionEntry<'services'>;
+  next: CollectionEntry<'services'>;
+  index: number;
+  total: number;
+}
+const { service, next, index, total } = Astro.props;
+const d = service.data;
+const faq = d.faq ? faqGroups.find((g) => g.id === d.faq) : undefined;
+const related = d.related.length ? await getEntries(d.related) : [];
+const pad = (n: number) => String(n).padStart(2, '0');
+const url = new URL(Astro.url.pathname, Astro.site).href;
+
+const schema: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: d.name,
+    serviceType: d.name,
+    description: d.seoDescription,
+    url,
+    provider: { '@id': `${site.url}/#organization` },
+    areaServed: { '@type': 'State', name: 'Hawaii' },
+  },
+];
+if (faq) {
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  });
+}
+---
+
+<BaseLayout title={d.seoTitle} description={d.seoDescription} schema={schema}>
+  <!-- ------------------------------------------------ hero -->
+  <section class="shero" data-hero>
+    <div class="wrap shero__grid">
+      <div class="shero__copy">
+        <div data-hero-item><Breadcrumbs items={[{ label: 'Services', href: '/services/' }, { label: d.short, href: `/${service.id}/` }]} /></div>
+        <p class="shero__count t-label t-num" data-hero-item>Service {pad(index)} / {pad(total)}</p>
+        <h1 class="shero__title" data-split>{d.heroTitle}</h1>
+        <p class="t-lead shero__tag" data-hero-item>{d.heroTagline}</p>
+        <div class="shero__ctas" data-hero-item>
+          <Button href="#consultation" size="l" magnetic>Get your free consultation</Button>
+          <Button href={site.phone.href} variant="ghost" size="l" icon="phone">{site.phone.display}</Button>
+        </div>
+      </div>
+      <div class="shero__art" data-clip="center" style="--clip-radius: 28px">
+        <div class="shero__art-inner" data-parallax="0.1">
+          <Picture
+            src={d.image}
+            alt=""
+            widths={[600, 900, 1300]}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            formats={['avif']} fallbackFormat="webp"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ intro -->
+  <section class="sintro section">
+    <div class="wrap sintro__grid">
+      <div class="sintro__head">
+        <Eyebrow index="01">Overview</Eyebrow>
+        <h2 class="t-h2" data-split>{d.intro.heading}</h2>
+      </div>
+      <div class="sintro__body">
+        {
+          d.intro.paragraphs.map((p, i) => (
+            <p class={i === 0 ? 't-lead' : 't-body'} data-reveal>
+              {p}
+            </p>
+          ))
+        }
+      </div>
+    </div>
+
+    {
+      d.benefits && d.module !== 'hosting' && (
+        <ol class="wrap benefits" role="list" data-stagger>
+          {d.benefits.map((b, i) => (
+            <li class="benefit">
+              <span class="benefit__n t-num">{pad(i + 1)}</span>
+              <h3 class="t-h4">{b.title}</h3>
+              <p class="t-small">{b.text}</p>
+            </li>
+          ))}
+        </ol>
+      )
+    }
+  </section>
+
+  {d.module === 'social' && <SocialPlans />}
+  {d.module === 'hosting' && <HostingPlans />}
+
+  <!-- ------------------------------------------------ editorial sections -->
+  {
+    d.sections.map((s, i) => (
+      <section class:list={['ssec', i % 2 ? 'ssec--b' : 'ssec--a', { 'surface-white': i % 2 === 1 }]}>
+        <div class="wrap ssec__grid">
+          <span class="ssec__rule" data-line aria-hidden="true" />
+          <div class="ssec__head">
+            <Eyebrow index={pad(i + 2)}>{s.kicker ?? d.short}</Eyebrow>
+            <h2 class="t-h2" data-split>
+              {s.heading}
+            </h2>
+          </div>
+          <div class="ssec__body">
+            {s.paragraphs.map((p) => (
+              <p class="t-body" data-reveal>
+                {p}
+              </p>
+            ))}
+            {s.tags && (
+              <ul class="ssec__tags" role="list" data-stagger>
+                {s.tags.map((t) => (
+                  <li class="chip">{t}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  {
+    d.steps && (
+      <section class="steps section surface-sky" aria-labelledby="steps-title">
+        <div class="wrap">
+          <Eyebrow>Process</Eyebrow>
+          <h2 id="steps-title" class="t-h2 steps__title" data-split>
+            How it comes together
+          </h2>
+          <ol class="steps__list" role="list" data-stagger>
+            {d.steps.map((st, i) => (
+              <li class="step">
+                <span class="step__n t-num">{pad(i + 1)}</span>
+                <span class="step__dot" aria-hidden="true" />
+                <span class="step__label">{st}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    d.list && (
+      <section class="ilist section surface-navy" aria-labelledby="ilist-title">
+        <div class="wrap ilist__grid">
+          <div class="ilist__head">
+            <Eyebrow>Who it’s for</Eyebrow>
+            <h2 id="ilist-title" class="t-h2" data-split>
+              {d.listTitle}
+            </h2>
+          </div>
+          <ol class="ilist__items" role="list" data-stagger="0.05">
+            {d.list.map((item, i) => (
+              <li>
+                <span class="idx">{pad(i + 1)}</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    d.module === 'hosting' && d.benefits && (
+      <section class="section" aria-labelledby="reasons-title">
+        <div class="wrap">
+          <Eyebrow>More reasons to host with us</Eyebrow>
+          <h2 id="reasons-title" class="t-h2 reasons__title" data-split>
+            Fully managed, fast and secure.
+          </h2>
+          <ol class="benefits benefits--3" role="list" data-stagger>
+            {d.benefits.map((b, i) => (
+              <li class="benefit">
+                <span class="benefit__n t-num">{pad(i + 1)}</span>
+                <h3 class="t-h4">{b.title}</h3>
+                <p class="t-small">{b.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    related.length > 0 && (
+      <section class="related section" aria-labelledby="related-title">
+        <div class="wrap">
+          <div class="related__head">
+            <Eyebrow>Related work</Eyebrow>
+            <h2 id="related-title" class="t-h2" data-split>
+              {d.short} in practice.
+            </h2>
+            <a href="/case-studies/" class="u-link u-link--static related__all">
+              All case studies
+            </a>
+          </div>
+          <div class:list={['related__grid', `related__grid--${related.length}`]}>
+            {related.map((p, i) => (
+              <div data-reveal data-delay={String(i * 0.1)}>
+                <ProjectCard project={p} ratio={i === 0 ? '5 / 4' : '4 / 3'} sizes="(min-width: 1024px) 33vw, 100vw" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    faq && (
+      <section class="sfaq section surface-white" aria-labelledby="faq-title">
+        <div class="wrap sfaq__grid">
+          <div class="sfaq__head">
+            <Eyebrow>Questions</Eyebrow>
+            <h2 id="faq-title" class="t-h2" data-split>
+              Frequently asked.
+            </h2>
+            {faq.intro && <p class="t-body">{faq.intro}</p>}
+            <a href={`/services/#${faq.id}`} class="u-link u-link--static sfaq__more">
+              More questions & answers
+            </a>
+          </div>
+          <div class="sfaq__list">
+            <FaqList items={faq.items} />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <EnquirySection heading={d.cta.heading} paragraphs={d.cta.paragraphs} service={d.name} />
+
+  <!-- ------------------------------------------------ next -->
+  <nav class="snext" aria-label="Next service">
+    <a href={`/${next.id}/`} class="snext__link wrap">
+      <span class="t-label">Next service</span>
+      <span class="snext__name">{next.data.short}</span>
+      <span class="snext__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" /></svg>
+      </span>
+    </a>
+  </nav>
+</BaseLayout>
+
+<style>
+  /* hero */
+  .shero {
+    padding: calc(var(--header-h) + 1.5rem) 0 var(--space-l);
+  }
+  .shero__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+    align-items: center;
+  }
+  .shero__copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .shero__count {
+    margin-top: clamp(1rem, 4vh, 3rem);
+    color: var(--c-blue);
+  }
+  .shero__title {
+    font-size: clamp(2.75rem, 1rem + 6.4vw, 7rem);
+    line-height: 0.94;
+    letter-spacing: -0.052em;
+    max-width: 11ch;
+  }
+  .shero__tag {
+    max-width: 28rem;
+    color: var(--c-ink-2);
+  }
+  .shero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .shero__art {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-l);
+    overflow: hidden;
+    background: var(--c-sky-100);
+  }
+  .shero__art-inner {
+    position: absolute;
+    inset: -6% 0;
+  }
+  .shero__art :global(picture) {
+    display: contents;
+  }
+  .shero__art :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 1024px) {
+    .shero {
+      min-height: 92svh;
+      display: flex;
+      align-items: center;
+    }
+    .shero__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      width: min(100% - 2 * var(--gutter), var(--max));
+    }
+    .shero__copy {
+      grid-column: 1 / 7;
+    }
+    .shero__art {
+      grid-column: 7 / -1;
+      aspect-ratio: 5 / 4;
+    }
+  }
+
+  /* intro */
+  .sintro__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .sintro__head {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+  .sintro__head h2 {
+    max-width: 14ch;
+  }
+  .sintro__body {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 40rem;
+  }
+  @media (min-width: 1024px) {
+    .sintro__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .sintro__head {
+      grid-column: 1 / 6;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+    .sintro__body {
+      grid-column: 7 / -1;
+    }
+  }
+
+  /* benefits */
+  .benefits {
+    display: grid;
+    gap: 1rem;
+    margin-top: var(--space-xl);
+  }
+  @media (min-width: 700px) {
+    .benefits {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .benefits {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .benefits--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .benefit {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    padding: 1.75rem;
+    border-radius: var(--r-l);
+    background: var(--c-white);
+    box-shadow: inset 0 0 0 1px var(--c-line);
+    transition: transform 0.5s var(--ease-out), box-shadow 0.5s;
+  }
+  .benefit:hover {
+    transform: translateY(-4px);
+    box-shadow: inset 0 0 0 1px var(--c-sky-300), var(--shadow-soft);
+  }
+  .benefit__n {
+    font-size: 2.5rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--c-blue);
+    margin-bottom: 1.5rem;
+  }
+  .reasons__title {
+    margin-top: 1.25rem;
+    max-width: 16ch;
+  }
+
+  /* editorial sections */
+  .ssec {
+    padding-block: var(--space-xl);
+  }
+  .ssec__grid {
+    display: grid;
+    gap: 2rem var(--gutter);
+  }
+  .ssec__rule {
+    display: block;
+    height: 1px;
+    background: var(--c-line-strong);
+  }
+  .ssec__head {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+  .ssec__head h2 {
+    max-width: 18ch;
+  }
+  .ssec__body {
+    display: grid;
+    gap: 1.1rem;
+    max-width: 42rem;
+  }
+  .ssec__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+  }
+  @media (min-width: 1024px) {
+    .ssec__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .ssec__rule {
+      grid-column: 1 / -1;
+    }
+    .ssec--a .ssec__head {
+      grid-column: 1 / 6;
+    }
+    .ssec--a .ssec__body {
+      grid-column: 7 / -1;
+    }
+    /* alternate rhythm: headline spans wide, copy sits in two columns beneath */
+    .ssec--b .ssec__head {
+      grid-column: 1 / 10;
+    }
+    .ssec--b .ssec__head h2 {
+      max-width: 22ch;
+    }
+    .ssec--b .ssec__body {
+      grid-column: 4 / -1;
+      max-width: none;
+      columns: 2;
+      column-gap: var(--gutter);
+      display: block;
+    }
+    .ssec--b .ssec__body p {
+      break-inside: avoid;
+      margin-bottom: 1.1rem;
+    }
+  }
+
+  /* steps */
+  .steps__title {
+    margin: 1.25rem 0 var(--space-l);
+  }
+  .steps__list {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+  .step__n {
+    font-size: 0.875rem;
+    color: var(--c-blue);
+  }
+  .step__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--c-blue);
+    background: var(--c-sky-100);
+  }
+  .step__label {
+    font-size: var(--fs-h3);
+    letter-spacing: -0.03em;
+  }
+  @media (min-width: 900px) {
+    .steps__list {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+    }
+    .steps__list::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(1.4rem + 6px);
+      height: 1px;
+      background: var(--c-sky-300);
+    }
+    .step {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 0.9rem;
+    }
+    .step__dot {
+      position: relative;
+    }
+  }
+
+  /* industry list */
+  .ilist__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .ilist__head {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+  .ilist__items {
+    display: grid;
+    border-top: 1px solid var(--c-line-light);
+  }
+  .ilist__items li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--c-line-light);
+    font-size: var(--fs-h4);
+    letter-spacing: -0.015em;
+    transition: padding 0.5s var(--ease-out), color 0.3s;
+  }
+  .ilist__items li:hover {
+    padding-left: 0.75rem;
+    color: var(--c-powder);
+  }
+  .ilist__items .idx {
+    color: var(--c-sky-300);
+    padding-top: 0.35em;
+  }
+  @media (min-width: 1024px) {
+    .ilist__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .ilist__head {
+      grid-column: 1 / 6;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+    .ilist__items {
+      grid-column: 7 / -1;
+    }
+  }
+
+  /* related */
+  .related__head {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: var(--space-l);
+  }
+  .related__all {
+    justify-self: start;
+    color: var(--c-blue);
+  }
+  .related__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  @media (min-width: 900px) {
+    .related__grid--2 {
+      grid-template-columns: 1.2fr 1fr;
+    }
+    .related__grid--3 {
+      grid-template-columns: 1.3fr 1fr 1fr;
+      align-items: start;
+    }
+    .related__grid > :nth-child(2) {
+      margin-top: 4rem;
+    }
+    .related__grid > :nth-child(3) {
+      margin-top: 8rem;
+    }
+  }
+
+  /* faq */
+  .sfaq__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .sfaq__head {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+  .sfaq__more {
+    justify-self: start;
+    color: var(--c-blue);
+  }
+  @media (min-width: 1024px) {
+    .sfaq__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .sfaq__head {
+      grid-column: 1 / 5;
+    }
+    .sfaq__list {
+      grid-column: 6 / -1;
+    }
+  }
+
+  /* next */
+  .snext {
+    border-top: 1px solid var(--c-line);
+    background: var(--c-mist);
+  }
+  .snext__link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.5rem 2rem;
+    padding-block: var(--space-l);
+  }
+  .snext__link .t-label {
+    grid-column: 1 / -1;
+  }
+  .snext__name {
+    font-size: var(--fs-display);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    transition: color 0.35s, transform 0.6s var(--ease-out);
+  }
+  .snext__arrow {
+    display: grid;
+    place-items: center;
+    width: clamp(3.5rem, 6vw, 5.5rem);
+    height: clamp(3.5rem, 6vw, 5.5rem);
+    border-radius: 50%;
+    background: var(--c-navy);
+    color: var(--c-white);
+    transition: transform 0.6s var(--ease-out), background 0.3s;
+  }
+  .snext__link:hover .snext__name {
+    color: var(--c-blue);
+    transform: translateX(0.5rem);
+  }
+  .snext__link:hover .snext__arrow {
+    background: var(--c-blue);
+    transform: rotate(-45deg);
+  }
+</style>

@@ -1,0 +1,27 @@
+{
+  "name": "Dependable Overhead Door",
+  "domain": "dependabledoorusa.com",
+  "url": "https://dependabledoorusa.com",
+  "location": "Anaheim, CA",
+  "image": "../../assets/images/projects/dependable-overhead-door.jpg",
+  "imageAlt": "Dependable Overhead Door website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "SEO",
+    "Google Ads",
+    "Lead Capture"
+  ],
+  "body": [
+    "We designed a high-performing, user-focused website for Dependable Overhead Door, a niche roll-up and steel door installation and repair company serving all of Southern California. With a streamlined quote form at the core of the experience, users can quickly describe their project and get a fast, accurate response — making it easier than ever for the company to deliver pricing and service with speed and precision.",
+    "The site features real-time lead capture, a strong gallery of past work, and visible 5-star reviews from trusted, recognizable clients, instantly building credibility and trust. Designed for mobile responsiveness and conversion, the layout makes it effortless for customers to reach out, get informed, and take action. Thanks to its highly specific niche and SEO-optimized structure, the site also brings in steady organic traffic — helping the business grow without relying heavily on ads.",
+    "Simple, powerful, and built to perform — this is the kind of website that works as hard as the team behind it."
+  ],
+  "result": "Ongoing client since day one (2010). Organic traffic averages 310 visitors per month. Google Ads traffic averages 5–10 calls per month.",
+  "metric": {
+    "value": "Since 2010",
+    "label": "ongoing client — 310 organic visitors and 5–10 Google Ads calls a month"
+  },
+  "order": 18,
+  "featured": false,
+  "hawaii": false
+}

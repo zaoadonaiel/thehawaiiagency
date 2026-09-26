@@ -1,0 +1,94 @@
+---
+/**
+ * “Get your free consultation” — form + booking options. Used on the home page
+ * and every service page (the original site carried the form on each).
+ */
+import ContactForm from './ContactForm.astro';
+import MeetingOptions from './MeetingOptions.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import { site } from '~/data/site';
+
+interface Props {
+  index?: string;
+  heading?: string;
+  paragraphs?: string[];
+  service?: string;
+  id?: string;
+}
+const {
+  index,
+  heading = 'Get your free consultation.',
+  paragraphs = ['Fill out this quick form and we’ll reach out to you right away — or book a time that suits you.'],
+  service,
+  id = 'consultation',
+} = Astro.props;
+---
+
+<section class="enq section surface-white" id={id} aria-labelledby={`${id}-title`}>
+  <div class="enq__inner wrap">
+    <div class="enq__intro">
+      <Eyebrow index={index}>Free consultation</Eyebrow>
+      <h2 id={`${id}-title`} class="t-h2" data-split>{heading}</h2>
+      {paragraphs.map((p) => <p class="t-body" data-reveal>{p}</p>)}
+      <p class="enq__call" data-reveal>
+        <span class="t-label">Prefer to talk?</span>
+        <a href={site.phone.href} class="enq__phone">{site.phone.display}</a>
+      </p>
+    </div>
+    <div class="enq__form" data-reveal>
+      <ContactForm id={`${id}-form`} service={service} />
+    </div>
+    <div class="enq__meet">
+      <p class="t-label enq__meet-label">Or book a meeting</p>
+      <MeetingOptions />
+    </div>
+  </div>
+</section>
+
+<style>
+  .enq__inner {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .enq__intro {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+    max-width: 34rem;
+  }
+  .enq__call {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+  .enq__phone {
+    font-size: var(--fs-h3);
+    letter-spacing: -0.03em;
+    color: var(--c-blue);
+    width: fit-content;
+    transition: color 0.3s;
+  }
+  .enq__phone:hover {
+    color: var(--c-navy);
+  }
+  .enq__meet-label {
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 1024px) {
+    .enq__inner {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .enq__intro {
+      grid-column: 1 / span 5;
+      grid-row: 1 / span 2;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+    .enq__form {
+      grid-column: 7 / -1;
+    }
+    .enq__meet {
+      grid-column: 7 / -1;
+    }
+  }
+</style>

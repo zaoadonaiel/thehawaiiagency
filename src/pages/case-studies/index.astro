@@ -1,0 +1,204 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHero from '~/components/sections/shared/PageHero.astro';
+import ProjectCard from '~/components/sections/shared/ProjectCard.astro';
+import EnquirySection from '~/components/sections/shared/EnquirySection.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  if (a.data.hawaii !== b.data.hawaii) return a.data.hawaii ? -1 : 1;
+  return a.data.order - b.data.order;
+});
+const counts = {
+  all: projects.length,
+  hawaii: projects.filter((p) => p.data.hawaii).length,
+  mainland: projects.filter((p) => !p.data.hawaii).length,
+};
+const layouts = ['a', 'b', 'c', 'd', 'e'];
+const ratios: Record<string, string> = { a: '4 / 3', b: '4 / 5', c: '4 / 5', d: '4 / 3', e: '16 / 9' };
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Case Studies — The Hawaii Agency',
+    hasPart: projects.map((p) => ({
+      '@type': 'CreativeWork',
+      name: p.data.name,
+      url: new URL(`/case-studies/${p.id}/`, Astro.site).href,
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Case Studies | The Hawaii Agency"
+  description="Successful case studies from The Hawaii Agency — websites, apps, ecommerce, branding, SEO and Google Ads for businesses across Hawaii and the mainland, with published results."
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Selected work"
+    title="Successful case studies."
+    lead="Learn more about why our clients love us. Recent work for businesses across the islands and the mainland — most of whom we still work with on an ongoing basis."
+    crumbs={[{ label: 'Case Studies', href: '/case-studies/' }]}
+    contour="oahu"
+  >
+    <dl class="cs-stats">
+      <div><dt class="t-label">Projects</dt><dd class="t-num">{counts.all}</dd></div>
+      <div><dt class="t-label">In Hawaii</dt><dd class="t-num">{counts.hawaii}</dd></div>
+      <div><dt class="t-label">Mainland</dt><dd class="t-num">{counts.mainland}</dd></div>
+    </dl>
+  </PageHero>
+
+  <section class="cs section--tight" aria-label="Projects">
+    <div class="wrap">
+      <div class="cs-filter" role="group" aria-label="Filter projects" data-filter hidden>
+        <button type="button" aria-pressed="true" data-filter-value="all">All <span>{counts.all}</span></button>
+        <button type="button" aria-pressed="false" data-filter-value="hawaii">Hawaii <span>{counts.hawaii}</span></button>
+        <button type="button" aria-pressed="false" data-filter-value="mainland">Mainland <span>{counts.mainland}</span></button>
+        <p class="sr-only" aria-live="polite" data-filter-status></p>
+      </div>
+
+      <ul role="list" class="cs-grid" data-filter-grid>
+        {
+          projects.map((p, i) => {
+            const l = layouts[i % layouts.length];
+            return (
+              <li class="cs-item" data-layout={l} data-region={p.data.hawaii ? 'hawaii' : 'mainland'} data-reveal>
+                <ProjectCard
+                  project={p}
+                  size={l === 'a' || l === 'e' ? 'l' : 'm'}
+                  ratio={ratios[l]}
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                />
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <EnquirySection heading="Your project could be next." />
+</BaseLayout>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-filter]');
+  const grid = document.querySelector<HTMLElement>('[data-filter-grid]');
+  if (root && grid) {
+    root.hidden = false;
+    const items = [...grid.querySelectorAll<HTMLElement>('.cs-item')];
+    const status = root.querySelector<HTMLElement>('[data-filter-status]');
+    const layouts = ['a', 'b', 'c', 'd', 'e'];
+    const ratios: Record<string, string> = { a: '4 / 3', b: '4 / 5', c: '4 / 5', d: '4 / 3', e: '16 / 9' };
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter-value]');
+      if (!btn) return;
+      const value = btn.dataset.filterValue!;
+      root.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      let n = 0;
+      items.forEach((item) => {
+        const show = value === 'all' || item.dataset.region === value;
+        item.hidden = !show;
+        if (show) {
+          // keep the editorial rhythm intact for whatever remains visible
+          const l = layouts[n % layouts.length];
+          item.dataset.layout = l;
+          const media = item.querySelector<HTMLElement>('.pcard__media');
+          if (media) media.style.aspectRatio = ratios[l];
+          item.style.opacity = '1';
+          item.style.transform = 'none';
+          n++;
+        }
+      });
+      if (status) status.textContent = `Showing ${n} projects`;
+    });
+  }
+</script>
+
+<style>
+  .cs-stats {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+  .cs-stats div {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .cs-stats dd {
+    font-size: clamp(2.5rem, 1.8rem + 2.6vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .cs-filter {
+    position: sticky;
+    top: calc(var(--header-h) + 0.75rem);
+    z-index: 10;
+    display: inline-flex;
+    gap: 0.25rem;
+    margin-bottom: var(--space-l);
+    padding: 0.3rem;
+    border-radius: var(--r-pill);
+    background: rgb(255 255 255 / 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 0 0 1px var(--c-line), var(--shadow-soft);
+  }
+  .cs-filter[hidden] {
+    display: none;
+  }
+  .cs-filter button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border-radius: var(--r-pill);
+    font-size: 0.9375rem;
+    color: var(--c-ink-2);
+    transition: background 0.3s, color 0.3s;
+  }
+  .cs-filter button span {
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+  .cs-filter button:hover {
+    color: var(--c-ink);
+  }
+  .cs-filter button[aria-pressed='true'] {
+    background: var(--c-navy);
+    color: var(--c-white);
+  }
+  .cs-grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .cs-item[hidden] {
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .cs-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: start;
+      row-gap: var(--space-xl);
+    }
+    .cs-item[data-layout='a'] {
+      grid-column: 1 / 8;
+    }
+    .cs-item[data-layout='b'] {
+      grid-column: 9 / -1;
+      margin-top: 9rem;
+    }
+    .cs-item[data-layout='c'] {
+      grid-column: 1 / 6;
+    }
+    .cs-item[data-layout='d'] {
+      grid-column: 7 / -1;
+      margin-top: 6rem;
+    }
+    .cs-item[data-layout='e'] {
+      grid-column: 3 / 11;
+    }
+  }
+</style>

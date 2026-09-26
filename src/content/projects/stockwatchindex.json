@@ -1,0 +1,27 @@
+{
+  "name": "StockWatchIndex",
+  "domain": "stockwatchindex.com",
+  "url": "https://stockwatchindex.com",
+  "location": "San Diego, CA",
+  "image": "../../assets/images/projects/stockwatchindex.jpg",
+  "imageAlt": "StockWatchIndex website shown on a desktop display",
+  "services": [
+    "Rebrand & Logo",
+    "Publishing Platform",
+    "SEO",
+    "Hosting & Support"
+  ],
+  "body": [
+    "StockWatchIndex has been a valued client for over five years. When we first connected, their site had an outdated logo and limited functionality. We started by rebranding their identity with a modern logo that better reflected the forward-thinking voice of the site’s owner — an experienced entrepreneur with deep roots in the cannabis, crypto, and tech industries.",
+    "Since then, we’ve built StockWatchIndex into a powerful publishing platform that delivers real-time financial news, stock updates, and in-depth analysis across crypto, cannabis, and real estate markets. The website features custom article posting tools, integrated RSS feeds, subscription capture forms, and an SEO-optimized structure to ensure visibility and reach.",
+    "Now a trusted source for thousands of investors, StockWatchIndex continues to grow, and we remain their dedicated partner for hosting, support, and digital expansion."
+  ],
+  "result": "Accumulated over 58k newsletter subscribers since the revamp.",
+  "metric": {
+    "value": "58k+",
+    "label": "newsletter subscribers since the revamp"
+  },
+  "order": 15,
+  "featured": false,
+  "hawaii": false
+}

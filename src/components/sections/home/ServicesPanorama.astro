@@ -1,0 +1,242 @@
+---
+/**
+ * Services as a pinned horizontal panorama on desktop (scroll moves the strip
+ * sideways), and a native scroll-snap strip on touch devices.
+ */
+import { Picture } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="pano surface-sky" data-horizontal aria-labelledby="pano-title">
+  <div class="pano__head wrap">
+    <div>
+      <Eyebrow index="02">What we do</Eyebrow>
+      <h2 id="pano-title" class="t-h1 pano__title" data-split>From front-end design to backend infrastructure.</h2>
+    </div>
+    <div class="pano__aside">
+      <p class="t-body">
+        Eleven services, one team — and you work directly with the founder on every project.
+      </p>
+      <div class="pano__progress" aria-hidden="true"><span data-horizontal-progress></span></div>
+    </div>
+  </div>
+
+  <ol class="pano__track" role="list" data-horizontal-track>
+    {
+      services.map((s, i) => (
+        <li class="pano__card">
+          <a href={`/${s.id}/`} class="pano__link">
+            <span class="pano__media">
+              <Picture
+                src={s.data.image}
+                alt=""
+                widths={[480, 800, 1100]}
+                sizes="(min-width: 1024px) 30vw, 80vw"
+                formats={['avif']} fallbackFormat="webp"
+                loading="lazy"
+              />
+            </span>
+            <span class="pano__meta">
+              <span class="idx">{String(i + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}</span>
+              <span class="pano__name">{s.data.short}</span>
+              <span class="pano__summary">{s.data.summary}</span>
+              <span class="pano__more">
+                Explore {s.data.short}
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+    <li class="pano__card pano__card--end">
+      <a href="/services/" class="pano__end">
+        <span class="t-label">Questions?</span>
+        <span class="pano__end-title">All services &amp; frequently asked questions</span>
+        <span class="pano__end-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+        </span>
+      </a>
+    </li>
+  </ol>
+</section>
+
+<style>
+  .pano {
+    position: relative;
+    padding-block: var(--space-section) var(--space-xl);
+    overflow: hidden;
+  }
+  .pano__head {
+    display: grid;
+    gap: 1.5rem var(--gutter);
+    margin-bottom: var(--space-l);
+  }
+  .pano__title {
+    margin-top: 1.25rem;
+    max-width: 14ch;
+  }
+  .pano__aside {
+    display: grid;
+    gap: 1.5rem;
+    align-content: end;
+    max-width: 26rem;
+  }
+  .pano__progress {
+    display: none;
+    height: 2px;
+    background: rgb(15 34 56 / 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pano__progress span {
+    display: block;
+    height: 100%;
+    background: var(--c-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .pano__track {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+  }
+  .pano__track::-webkit-scrollbar {
+    display: none;
+  }
+  .pano__card {
+    flex: 0 0 min(82vw, 26rem);
+    scroll-snap-align: start;
+  }
+  .pano__link {
+    display: grid;
+    gap: 1.25rem;
+    height: 100%;
+    border-radius: var(--r-l);
+  }
+  .pano__media {
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-l);
+    overflow: hidden;
+    background: var(--c-sky-50);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset;
+  }
+  .pano__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.1s var(--ease-out);
+  }
+  .pano__link:hover .pano__media :global(img),
+  .pano__link:focus-visible .pano__media :global(img) {
+    transform: scale(1.06);
+  }
+  .pano__meta {
+    display: grid;
+    gap: 0.6rem;
+    padding-inline: 0.25rem;
+  }
+  .pano__name {
+    font-size: var(--fs-h3);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .pano__summary {
+    font-size: var(--fs-small);
+    color: var(--c-ink-2);
+    max-width: 34ch;
+  }
+  .pano__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--c-blue);
+  }
+  .pano__more svg {
+    transition: transform 0.45s var(--ease-out);
+  }
+  .pano__link:hover .pano__more svg {
+    transform: translateX(5px);
+  }
+  .pano__end {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 100%;
+    min-height: 20rem;
+    padding: 2rem;
+    border-radius: var(--r-l);
+    background: var(--c-navy);
+    color: var(--c-white);
+    transition: background 0.4s;
+  }
+  .pano__end .t-label {
+    color: var(--c-powder);
+  }
+  .pano__end-title {
+    font-size: var(--fs-h3);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .pano__end-arrow {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--c-blue);
+    transition: transform 0.5s var(--ease-out);
+  }
+  .pano__end:hover {
+    background: var(--c-deep);
+  }
+  .pano__end:hover .pano__end-arrow {
+    transform: translateX(8px);
+  }
+
+  @media (min-width: 1024px) {
+    .pano {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: calc(var(--header-h) + 1rem) 3rem;
+    }
+    .pano__head {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: end;
+    }
+    .pano__progress {
+      display: block;
+    }
+    .pano__card {
+      flex-basis: clamp(22rem, 27vw, 30rem);
+    }
+    .pano__card:nth-child(even) {
+      padding-top: 3.5rem;
+    }
+    /* With motion the strip is pinned and driven by scroll; otherwise it scrolls natively. */
+    :global(html.motion) .pano__track {
+      overflow: visible;
+      scroll-snap-type: none;
+    }
+    :global(html:not(.motion)) .pano {
+      min-height: 0;
+    }
+  }
+</style>

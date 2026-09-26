@@ -1,0 +1,121 @@
+---
+/** Native <details> accordion — works without JavaScript, animates where supported. */
+interface Props {
+  items: { q: string; a: string }[];
+  tone?: 'light' | 'dark';
+}
+const { items, tone = 'light' } = Astro.props;
+---
+
+<div class:list={['faq', `faq--${tone}`]}>
+  {
+    items.map((item, i) => (
+      <details class="faq__item" name={undefined}>
+        <summary class="faq__q">
+          <span class="idx">{String(i + 1).padStart(2, '0')}</span>
+          <span class="faq__q-text">{item.q}</span>
+          <span class="faq__icon" aria-hidden="true" />
+        </summary>
+        <div class="faq__a">
+          <p>{item.a}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--c-line);
+    interpolate-size: allow-keywords;
+  }
+  .faq__item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 0.5s var(--ease-out),
+      content-visibility 0.5s allow-discrete;
+  }
+  .faq__item[open]::details-content {
+    block-size: auto;
+  }
+  .faq__q {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--fs-h4);
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    transition: color 0.3s;
+  }
+  .faq__q::-webkit-details-marker {
+    display: none;
+  }
+  .faq__q:hover {
+    color: var(--c-blue);
+  }
+  .faq__icon {
+    position: relative;
+    align-self: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--c-line-strong);
+    transition: background 0.3s, border-color 0.3s, transform 0.5s var(--ease-out);
+  }
+  .faq__icon::before,
+  .faq__icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 1.5px;
+    background: currentColor;
+    translate: -50% -50%;
+    transition: transform 0.45s var(--ease-out);
+  }
+  .faq__icon::after {
+    transform: rotate(90deg);
+  }
+  .faq__item[open] .faq__icon {
+    background: var(--c-navy);
+    border-color: var(--c-navy);
+    color: var(--c-white);
+    transform: rotate(180deg);
+  }
+  .faq__item[open] .faq__icon::after {
+    transform: rotate(0deg);
+  }
+  .faq__a {
+    padding: 0 3rem 1.5rem 2.6rem;
+    color: var(--c-ink-2);
+    max-width: 48rem;
+  }
+  .faq--dark {
+    border-color: var(--c-line-light);
+  }
+  .faq--dark .faq__item {
+    border-color: var(--c-line-light);
+  }
+  .faq--dark .faq__a {
+    color: rgb(255 255 255 / 0.75);
+  }
+  .faq--dark .faq__icon {
+    border-color: var(--c-line-light);
+  }
+  .faq--dark .faq__item[open] .faq__icon {
+    background: var(--c-white);
+    color: var(--c-navy);
+  }
+  .faq--dark .faq__q:hover {
+    color: var(--c-powder);
+  }
+</style>

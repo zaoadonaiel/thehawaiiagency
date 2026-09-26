@@ -1,0 +1,112 @@
+---
+/**
+ * Inner-page opener. Title is set large with a masked line reveal; an optional
+ * contour field draws itself behind. Extra content (buttons, meta) goes in the slot.
+ */
+import oahu from '~/assets/art/contours-oahu.svg?raw';
+import summit from '~/assets/art/contours-summit.svg?raw';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Breadcrumbs, { type Crumb } from '~/components/ui/Breadcrumbs.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  crumbs?: Crumb[];
+  contour?: 'oahu' | 'summit' | 'none';
+  size?: 'xl' | 'l';
+  tone?: 'mist' | 'sky' | 'navy';
+}
+const { eyebrow, title, lead, crumbs, contour = 'oahu', size = 'xl', tone = 'mist' } = Astro.props;
+const svg = contour === 'oahu' ? oahu : contour === 'summit' ? summit : '';
+---
+
+<section class:list={['phero', `phero--${size}`, `phero--${tone}`, { 'surface-navy': tone === 'navy' }]} data-hero>
+  {svg && <div class="phero__contour" aria-hidden="true" set:html={svg} />}
+  <div class="wrap phero__inner">
+    <div class="phero__top" data-hero-item>
+      {crumbs && <Breadcrumbs items={crumbs} />}
+    </div>
+    <Eyebrow class="phero__eyebrow">{eyebrow}</Eyebrow>
+    <h1 class="phero__title" data-split>{title}</h1>
+    <div class="phero__foot">
+      {lead && <p class="phero__lead t-lead" data-hero-item>{lead}</p>}
+      <div class="phero__slot" data-hero-item><slot /></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .phero {
+    position: relative;
+    overflow: clip;
+    padding: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem)) 0 var(--space-xl);
+  }
+  .phero--sky {
+    background: var(--c-sky-100);
+  }
+  .phero__contour {
+    position: absolute;
+    inset: 0;
+    color: var(--c-sky-300);
+    opacity: 0.4;
+    pointer-events: none;
+    mask-image: linear-gradient(90deg, transparent 5%, #000 55%);
+  }
+  .surface-navy .phero__contour {
+    opacity: 0.18;
+  }
+  .phero__contour :global(svg) {
+    position: absolute;
+    right: -8%;
+    top: -10%;
+    width: min(95vw, 1300px);
+    height: auto;
+  }
+  .phero__inner {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .phero__top {
+    min-height: 1.5rem;
+  }
+  .phero__title {
+    font-size: var(--fs-display);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    max-width: 16ch;
+  }
+  .phero--l .phero__title {
+    font-size: var(--fs-h1);
+    max-width: 20ch;
+  }
+  .phero__foot {
+    display: grid;
+    gap: 1.75rem var(--gutter);
+    margin-top: 1rem;
+  }
+  .phero__lead {
+    max-width: 36rem;
+    color: var(--c-ink-2);
+  }
+  .surface-navy .phero__lead {
+    color: rgb(255 255 255 / 0.8);
+  }
+  .phero__slot:empty {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .phero__foot {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+    }
+    .phero__lead {
+      grid-column: 1 / 7;
+    }
+    .phero__slot {
+      grid-column: 8 / -1;
+      justify-self: end;
+    }
+  }
+</style>

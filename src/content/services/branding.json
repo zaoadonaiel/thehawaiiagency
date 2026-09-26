@@ -1,0 +1,53 @@
+{
+  "order": 5,
+  "name": "Branding & Logo Design",
+  "short": "Branding",
+  "seoTitle": "Branding Hawaii | Branding & Logo Design Agency",
+  "seoDescription": "Creative branding for Hawaii businesses — logo design, brand identity, packaging and graphic design, designed with you over screen share.",
+  "heroTitle": "Branding & logo design.",
+  "heroTagline": "Creative branding for Hawaii businesses.",
+  "summary": "Brand identity, logo design, packaging and graphic design — perfected down to color schemes and icons, and designed with you over screen share.",
+  "intro": {
+    "heading": "Hawaii branding solutions",
+    "paragraphs": [
+      "The Hawaii Agency is a full-service branding agency that offers a wide range of services, including packaging and graphic design, to help you bring your brand vision to life. Our team of experts is passionate about perfecting every aspect of your brand, from color schemes to icons, ensuring that it truly reflects your unique identity.",
+      "Brand identity is crucial for establishing a company’s reputation and identity. It encompasses every aspect of a business, from its name and logo to its messaging and customer experience. A well-crafted brand can leave a lasting impression on customers, increasing their loyalty and advocacy while also improving brand recognition and recall.",
+      "Moreover, a strong brand can set your business apart from the competition and make it easier to stand out in a crowded market. It can also make your company more attractive to potential employees, helping you to attract and retain top talent.",
+      "Investing in branding can have a significant impact on the success of your business, creating a solid foundation for long-term growth, building trust, fostering customer loyalty, and driving sales. We are committed to helping your business develop a robust and distinctive brand identity that resonates with your target audience."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "Benefits of good logo design",
+      "heading": "A logo carries your values and personality",
+      "paragraphs": [
+        "A logo can effectively convey a company’s values and personality. For instance, a company that values sustainability and environmental responsibility may choose to use green or earthy tones in their logo design or incorporate natural world imagery. In contrast, a company that values innovation and technology may prefer a sleek, modern logo design with clean lines and bold typography.",
+        "A logo should be adaptable and versatile enough to be used on different applications and mediums. A well-designed logo should look great on everything from a website to a business card to a billboard, in both color and black and white. It should also be scalable, which means it can be resized without losing clarity or legibility.",
+        "In summary, a well-designed logo is an integral part of a company’s branding strategy. It visually represents the company’s identity, values, and personality, and can help establish brand recognition and recall, differentiate the company from its competitors, and create a sense of unity and pride among employees."
+      ],
+      "tags": [
+        "Brand identity",
+        "Logo design",
+        "Logo redesign",
+        "Vectoring",
+        "Packaging",
+        "Graphic design",
+        "Brand kits",
+        "Business cards"
+      ]
+    }
+  ],
+  "cta": {
+    "heading": "Let’s build your brand",
+    "paragraphs": [
+      "Our branding and logo design is executed via screenshare so that you can be involved in your dream brand. Book a free consultation and tell us about the brand you want to build."
+    ]
+  },
+  "faq": "branding",
+  "related": [
+    "johnny-hana",
+    "trash-bros-arizona",
+    "stockwatchindex"
+  ],
+  "image": "../../assets/images/art/service-branding.webp"
+}

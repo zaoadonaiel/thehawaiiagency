@@ -1,0 +1,87 @@
+---
+/** Long-form document layout (HIPAA, Terms & Privacy): hero, sticky contents, prose. */
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '~/components/sections/shared/PageHero.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  lead?: string;
+  path: string;
+  crumb: string;
+  toc: { id: string; label: string }[];
+  meta?: string;
+}
+const { title, description, eyebrow, heading, lead, path, crumb, toc, meta } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow={eyebrow} title={heading} lead={lead} crumbs={[{ label: crumb, href: path }]} contour="none" size="l">
+    {meta && <p class="t-small">{meta}</p>}
+  </PageHero>
+  <div class="doc section--tight">
+    <div class="wrap doc__grid">
+      <nav class="doc__toc" aria-label="On this page">
+        <p class="t-label">On this page</p>
+        <ol role="list">
+          {
+            toc.map((t) => (
+              <li>
+                <a href={`#${t.id}`} class="u-link">
+                  {t.label}
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+      <div class="doc__body prose">
+        <slot />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .doc {
+    border-top: 1px solid var(--c-line);
+    background: var(--c-white);
+  }
+  .doc__grid {
+    display: grid;
+    gap: 2rem var(--gutter);
+  }
+  .doc__toc {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .doc__toc ol {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--c-ink-2);
+  }
+  .doc__body :global(h2) {
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+  .doc__body :global(h2:first-child) {
+    margin-top: 0;
+  }
+  @media (min-width: 1024px) {
+    .doc__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .doc__toc {
+      grid-column: 1 / 4;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+      align-self: start;
+    }
+    .doc__body {
+      grid-column: 5 / -1;
+    }
+  }
+</style>

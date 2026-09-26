@@ -1,0 +1,27 @@
+{
+  "order": 11,
+  "name": "Social Media Marketing",
+  "short": "Social Media",
+  "seoTitle": "Social Media Marketing Plans | The Hawaii Agency",
+  "seoDescription": "Social media marketing plans for Hawaii businesses — Instagram and Facebook posts, YouTube videos, photos, short videos, drone footage and ad spend strategy from $250/mo.",
+  "heroTitle": "Social media marketing.",
+  "heroTagline": "Four plans, named for four Hawaiian landmarks.",
+  "summary": "Monthly plans with Instagram and Facebook posts, YouTube videos, photography, short-form video, drone footage, SEO and boost & ad-spend strategy.",
+  "intro": {
+    "heading": "Social media marketing plans",
+    "paragraphs": [
+      "Just like search engines, social media channels want you to play ball with them. So long as you stay consistent, you will see results. We have also found that social media marketing is much cheaper and can reach a wider audience than search engine marketing ads."
+    ]
+  },
+  "sections": [],
+  "module": "social",
+  "cta": {
+    "heading": "Pick a plan — or talk it through",
+    "paragraphs": [
+      "Book a free 20-minute consultation and we’ll help you choose the plan that fits your business."
+    ]
+  },
+  "faq": null,
+  "related": [],
+  "image": "../../assets/images/art/service-social-media-marketing.webp"
+}

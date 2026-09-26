@@ -1,0 +1,69 @@
+{
+  "order": 6,
+  "name": "Ecommerce",
+  "short": "Ecommerce",
+  "seoTitle": "Ecommerce Hawaii | Online Stores for Hawaii Businesses",
+  "seoDescription": "Ecommerce for Hawaii businesses — designed with aloha, built for success. WooCommerce, Shopify and custom stores with shipping, dropshipping, hosting and SEO.",
+  "heroTitle": "Ecommerce for Hawaii businesses.",
+  "heroTagline": "Designed with aloha, built for success.",
+  "summary": "WooCommerce, Shopify and custom stores with Hawaii-ready shipping and dropshipping, API integrations, hosting, SEO and monthly maintenance.",
+  "intro": {
+    "heading": "Hawaii ecommerce services",
+    "paragraphs": [
+      "At The Hawaii Agency, we specialize in providing comprehensive e-commerce services for businesses across Hawaii. Whether you’re already running an online store or transitioning from a brick-and-mortar setup to selling online, we can help you establish a robust and user-friendly e-commerce platform. Our team is experienced in working with various platforms such as WooCommerce, Shopify, and custom e-commerce solutions, ensuring that your online store meets your unique requirements.",
+      "We understand the challenges that Hawaii businesses face when it comes to shipping and logistics. That’s why we offer tailored solutions to accommodate shipping from Hawaii or implementing dropshipping models. With our expertise in API integrations and shipping modules, we can streamline your e-commerce operations, making it easy for you to manage orders, track inventory, and fulfill shipments seamlessly.",
+      "We believe that every business in Hawaii should have the opportunity to thrive online. Our goal is to provide you with a fluid and efficient online selling experience that empowers you to reach customers across the islands and beyond."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "Benefits of ecommerce stores",
+      "heading": "Island life, online marketplace",
+      "paragraphs": [
+        "Running a business in Hawaii can be a unique experience, balancing the laid-back island lifestyle with the need for efficiency and growth. With an e-commerce store, you can find that happy medium, tapping into a fast-paced online marketplace while still enjoying the serene island life. We’ve built beautiful and user-friendly shopping carts for our clients, ensuring that their online stores are not only visually appealing but also effective in generating sales.",
+        "One of the key benefits of working with us is that we host your e-commerce store, taking care of all the server-side management so you can focus on running your business. We ensure that your website is always up and running smoothly, handling uptime monitoring, website plugin updates, and providing 24/7 support whenever you need it.",
+        "Whether you’re launching a new e-commerce store or redesigning an existing one, you’ll love the benefits of partnering with The Hawaii Agency. From increased sales and customer reach to seamless website management and support, an e-commerce store opens up a world of opportunities for your Hawaii business."
+      ]
+    },
+    {
+      "kicker": "Features & options",
+      "heading": "Products, appointments, tours, delivery — any model",
+      "paragraphs": [
+        "We understand that creating an exceptional user experience is key to the success of any e-commerce platform. That’s why we offer a wide range of features and options tailored to cater to the needs of both businesses and their customers. From seamless buying processes to efficient shipping solutions, we ensure that every aspect of the user experience is optimized for maximum convenience and satisfaction.",
+        "Our e-commerce services are designed to accommodate various types of businesses, whether you’re selling products, booking appointments, or offering services like tours and food delivery. From intuitive navigation and streamlined checkout processes to secure payment gateways and responsive design, we’ll work closely with you to bring your vision to life and provide your customers with an exceptional online shopping experience.",
+        "With our experience working with businesses across the islands of Hawaii, we understand the unique challenges and opportunities of the local market. Whether you’re a small local shop or a large enterprise, we have the knowledge and expertise to help you succeed in the competitive world of e-commerce."
+      ],
+      "tags": [
+        "WooCommerce",
+        "Shopify",
+        "Custom stores",
+        "Shipping modules",
+        "Dropshipping",
+        "API integrations",
+        "Secure payment gateways",
+        "Bookings & tours"
+      ]
+    },
+    {
+      "kicker": "Complete ecommerce services",
+      "heading": "Build, rank, host and maintain",
+      "paragraphs": [
+        "Our expertise goes beyond just building e-commerce websites; we also specialize in optimizing them for search engines (SEO), providing hosting, and offering monthly maintenance services. With our SEO strategies, we ensure that your e-commerce store ranks high in search engine results, driving organic traffic and increasing visibility to potential customers. Our hosting services guarantee uptime, security, and performance, providing a reliable foundation for your online store.",
+        "Our monthly maintenance packages include updates, backups, and technical support, giving you peace of mind and allowing you to focus on running your business. With our complete e-commerce solutions, you can enjoy a stress-free experience while we take care of every aspect of your online store’s success."
+      ]
+    }
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "We understand that choosing the right e-commerce agency for your business is crucial, which is why we offer a free consultation to discuss your needs and expectations. We’ll take the time to understand your business goals, target audience, and unique requirements for your e-commerce store, walk you through our process, discuss available features and options, and answer any questions you may have."
+    ]
+  },
+  "faq": "ecommerce",
+  "related": [
+    "alpha-maui",
+    "hawaii-gallery",
+    "johnny-hana"
+  ],
+  "image": "../../assets/images/art/service-ecommerce.webp"
+}

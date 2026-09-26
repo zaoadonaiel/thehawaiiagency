@@ -1,0 +1,61 @@
+---
+import { Font } from 'astro:assets';
+import SEO, { type Props as SEOProps } from '~/components/seo/SEO.astro';
+import Header from '~/components/layout/Header.astro';
+import Footer from '~/components/layout/Footer.astro';
+import '~/styles/global.css';
+
+export interface Props extends SEOProps {
+  /** header starts transparent over a dark/imagery hero */
+  headerTone?: 'light' | 'dark';
+  /** hide the large “Let’s meet” footer call to action (e.g. on the contact page) */
+  footerCta?: boolean;
+  bodyClass?: string;
+}
+
+const { headerTone = 'light', footerCta = true, bodyClass, ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f3f7fa" />
+    <meta name="format-detection" content="telephone=no" />
+    <!--
+      Motion gate: hide-then-reveal states only apply with .motion. If the
+      motion module does not report in, reveal everything so no content is lost.
+    -->
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.classList.add('motion');
+          setTimeout(function () {
+            if (!window.__thaMotion) d.classList.remove('motion');
+          }, 3500);
+        }
+      })();
+    </script>
+    <Font cssVariable="--font-google-sans" preload />
+    <SEO {...seo} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header tone={headerTone} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer cta={footerCta} />
+    <script>
+      import '~/scripts/main';
+    </script>
+  </body>
+</html>

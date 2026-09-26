@@ -1,0 +1,26 @@
+{
+  "name": "National Benefit Brokers",
+  "domain": "nbbhawaii.com",
+  "url": "https://nbbhawaii.com",
+  "location": "Honolulu, HI",
+  "image": "../../assets/images/projects/national-benefit-brokers.jpg",
+  "imageAlt": "National Benefit Brokers website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Content Structure",
+    "Appointment Scheduling"
+  ],
+  "body": [
+    "We partnered with National Benefit Brokers (NBBHawaii.com) to modernize and elevate their online presence as a leading provider of financial and insurance services across Hawaii and the U.S. With a clear focus on retirement income planning, protected growth, and living benefits, NBB needed a digital platform that could clearly communicate complex strategies in a way that felt approachable, trustworthy, and client-focused.",
+    "The result is a clean, modern website built for both education and conversion — featuring simplified content structure, dynamic calls to action, and an easy-to-use appointment scheduler. Clients can now explore tailored solutions for long-term care, tax-deferred income, executive benefits, and more, all backed by real-life client stories and proven strategies.",
+    "With improved user experience, better mobile responsiveness, and a strong emphasis on lead generation, NBB is now equipped with a digital platform that reflects the quality and care they’ve delivered to island families and clients nationwide since 2006."
+  ],
+  "result": "Traffic increased by 51% in the first 90 days.",
+  "metric": {
+    "value": "+51%",
+    "label": "traffic in the first 90 days"
+  },
+  "order": 6,
+  "featured": false,
+  "hawaii": true
+}

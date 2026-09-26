@@ -1,0 +1,129 @@
+---
+import { Picture } from 'astro:assets';
+import art from '~/assets/images/art/studio-ridgeline.webp';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import { site } from '~/data/site';
+
+interface Props {
+  index?: string;
+  linkToAbout?: boolean;
+}
+const { index = '04', linkToAbout = true } = Astro.props;
+---
+
+<section class="founder section surface-sand" aria-labelledby="founder-title">
+  <div class="wrap founder__grid">
+    <figure class="founder__art">
+      <div class="founder__media" data-clip="left" style="--clip-radius: 0 0 0 0">
+        <div class="founder__inner" data-parallax="0.14">
+          <Picture
+            src={art}
+            alt=""
+            widths={[520, 820, 1200]}
+            sizes="(min-width: 1024px) 34vw, 100vw"
+            formats={['avif']} fallbackFormat="webp"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <figcaption class="t-small">Fig. 02 — Upcountry morning. Generative artwork for The Hawaii Agency.</figcaption>
+    </figure>
+
+    <div class="founder__body">
+      <Eyebrow index={index}>Meet {site.founder.name}</Eyebrow>
+      <blockquote class="founder__quote">
+        <p id="founder-title" data-split>“You will be working with me directly on every project.”</p>
+      </blockquote>
+      <p class="t-lead" data-reveal>
+        Founder and leader of The Hawaii Agency — a professional problem solver, creative director, full-stack
+        developer, server security expert and online marketer.
+      </p>
+      <p class="t-body" data-reveal>
+        Davey has helped numerous startups and established corporations with a plethora of services ranging from brand
+        awareness, web, app and software development, server-side security and PPC advertising. Whether it’s an
+        in-person meeting or a virtual screen share session, the commitment to clear and constant communication remains
+        unwavering — eliminating any possibility of miscommunication.
+      </p>
+      <dl class="founder__facts" data-stagger>
+        <div>
+          <dt class="t-label">Fluent in</dt>
+          <dd>English, Spanish &amp; Portuguese</dd>
+        </div>
+        <div>
+          <dt class="t-label">Meet</dt>
+          <dd>In person, Google Meet or phone</dd>
+        </div>
+      </dl>
+      {linkToAbout && <Button href="/about/" variant="ghost">About the studio</Button>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .founder__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .founder__art {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .founder__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--r-l);
+    background: var(--c-sky-100);
+  }
+  .founder__inner {
+    position: absolute;
+    inset: -10% 0;
+  }
+  .founder__inner :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .founder__inner :global(picture) {
+    display: contents;
+  }
+  .founder__body {
+    display: grid;
+    gap: 1.5rem;
+    align-content: center;
+    max-width: 40rem;
+  }
+  .founder__body > :global(.btn) {
+    justify-self: start;
+  }
+  .founder__quote p {
+    font-size: var(--fs-h2);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+  .founder__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem var(--gutter);
+    padding-block: 1.25rem;
+    border-block: 1px solid var(--c-line);
+  }
+  .founder__facts dd {
+    margin-top: 0.35rem;
+    font-size: 1.0625rem;
+  }
+  @media (min-width: 1024px) {
+    .founder__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: center;
+    }
+    .founder__art {
+      grid-column: 1 / 6;
+    }
+    .founder__body {
+      grid-column: 7 / -1;
+    }
+  }
+</style>

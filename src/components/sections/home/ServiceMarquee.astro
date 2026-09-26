@@ -1,0 +1,66 @@
+---
+import { serviceLinks } from '~/data/navigation';
+const items = serviceLinks.map((s) => s.label);
+---
+
+<section class="smq" aria-label="Services">
+  <div class="marquee" style="--marquee-duration: 46s">
+    {
+      [0, 1].map((copy) => (
+        <ul class="marquee__track" role="list" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {items.map((label, i) => (
+            <li class="smq__item">
+              <a href={serviceLinks[i].href} tabindex={copy === 1 ? -1 : undefined}>
+                {label}
+              </a>
+              <svg class="smq__mark" viewBox="0 0 40 24" aria-hidden="true">
+                <rect x="0" y="2" width="40" height="4" rx="2" />
+                <rect x="0" y="10" width="28" height="4" rx="2" />
+                <rect x="0" y="18" width="16" height="4" rx="2" />
+              </svg>
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .smq {
+    padding-block: clamp(1.25rem, 2vw, 2rem);
+    border-block: 1px solid var(--c-line);
+    background: var(--c-mist);
+  }
+  .smq__item {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 3rem);
+    padding-right: clamp(1.25rem, 3vw, 3rem);
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 5.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.045em;
+    white-space: nowrap;
+  }
+  .smq__item a {
+    color: var(--c-ink);
+    transition: color 0.35s;
+  }
+  .smq__item a:hover {
+    color: var(--c-blue);
+  }
+  .smq__item:nth-child(even) a {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--c-ink-3);
+  }
+  .smq__item:nth-child(even) a:hover {
+    color: var(--c-blue);
+    -webkit-text-stroke-color: var(--c-blue);
+  }
+  .smq__mark {
+    width: 0.6em;
+    height: auto;
+    fill: var(--c-sky-300);
+    flex: none;
+  }
+</style>

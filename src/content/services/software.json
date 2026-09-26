@@ -1,0 +1,76 @@
+{
+  "order": 7,
+  "name": "Software Development",
+  "short": "Software",
+  "seoTitle": "Custom Software Development Hawaii | Cloud Software",
+  "seoDescription": "Customized software development for complex situations — cloud-based systems built with Laravel, PHP, Vue.js and React Native for Hawaii businesses.",
+  "heroTitle": "Software solutions.",
+  "heroTagline": "Customized software development for complex situations.",
+  "summary": "White-labeled, cloud-based software — Laravel, PHP, Vue.js and React Native — designed around your processes, with server integration, security and maintenance.",
+  "intro": {
+    "heading": "Hawaii software solutions",
+    "paragraphs": [
+      "At The Hawaii Agency, we specialize in creating custom software solutions tailored to the unique needs of Hawaii businesses. Whether you need a cloud-based application to streamline communication, manage data, or integrate with APIs, we’ve got you covered.",
+      "Our team has extensive experience working with businesses in Hawaii and Silicon Valley, providing them with white-labeled software solutions that offer flexibility, security, and full control. With our custom software, you can manage your operations from anywhere in the world, ensuring seamless connectivity and efficiency for your business."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "Benefits of software development",
+      "heading": "Rebuild your processes from the ground up",
+      "paragraphs": [
+        "Custom software offers numerous benefits to businesses, including enhanced efficiency, streamlined processes, and cost savings. We prioritize transparency and collaboration throughout the software development process. Before we even start building, we ensure that you understand how the software will work and how it will benefit your business. Our team works closely with you to gather requirements and preferences, ensuring that the final product meets your exact needs.",
+        "With custom software, you have the opportunity to rebuild your processes from the ground up, incorporating an intuitive user interface (UI) for a seamless user experience. Our expertise in Laravel, PHP, Vue.js, and React Native allows us to create powerful cloud-based systems that are tailored to your business requirements. Whether you’re in logistics, finance, real estate, or any other industry, custom software can help you streamline operations and save valuable time and resources."
+      ],
+      "tags": [
+        "Laravel",
+        "PHP",
+        "Vue.js",
+        "React Native",
+        "APIs",
+        "Cloud"
+      ]
+    },
+    {
+      "kicker": "Cloud based software services",
+      "heading": "Instant access from anywhere",
+      "paragraphs": [
+        "Our cloud-based software services offer unparalleled flexibility and control for businesses looking to modernize their operations. Unlike traditional software, our cloud-based solutions provide instant access from anywhere with an internet connection, giving you full control over scaling, speed, and product management.",
+        "We guide you through every step of the cloud-based software development process, ensuring that your solution meets your specific needs and goals. Whether you’re in need of a logistics management system, an e-commerce platform, or a custom application, our team has the expertise to create a powerful cloud-based solution that empowers your business to thrive in the digital age."
+      ]
+    },
+    {
+      "kicker": "Complete software services",
+      "heading": "From architecture to the keys in your hand",
+      "paragraphs": [
+        "We provide complete software solution services tailored to your business needs. From initial design and architectural structure to server integration and security, we handle every aspect of your software development process. Our experienced team ensures that your software is seamlessly connected to your server and fully functional, giving you the keys to manage and operate it efficiently.",
+        "We offer monthly maintenance plans to keep your software running smoothly, or we can provide maintenance as needed, saving you money in the long run by preventing costly downtime and issues. With our comprehensive software solutions, you can focus on growing your business while we take care of the technical details."
+      ]
+    }
+  ],
+  "listTitle": "Hawaii businesses that could benefit from cloud software systems",
+  "list": [
+    "Hospitality industry (hotels, resorts, vacation rentals)",
+    "Tour and activity operators",
+    "Retail stores and e-commerce businesses",
+    "Real estate agencies",
+    "Healthcare providers",
+    "Construction and contracting companies",
+    "Transportation and logistics firms",
+    "Financial institutions and accounting firms",
+    "Educational institutions",
+    "Government agencies and departments"
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "Ready to explore how our custom software solutions can benefit your business? Request a free consultation today, whether you’re looking to develop a new software system or optimize an existing one. We’ll discuss your specific needs, analyze your current systems, and provide tailored recommendations to help you achieve your goals."
+    ]
+  },
+  "faq": "software-development",
+  "related": [
+    "im-in-hawaii",
+    "stockwatchindex"
+  ],
+  "image": "../../assets/images/art/service-software.webp"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Hotel Services, Inc.",
+  "domain": "hotelservicesinc.com",
+  "url": "https://hotelservicesinc.com",
+  "location": "Anaheim, CA",
+  "image": "../../assets/images/projects/hotel-services-inc.jpg",
+  "imageAlt": "Hotel Services, Inc. website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Branding",
+    "UX",
+    "SEO",
+    "Bilingual Site"
+  ],
+  "body": [
+    "We teamed up with Hotel Services, Inc., California’s go-to destination for hotel liquidation, FF&E services, and premium used furniture, to transform their outdated website into a modern, user-friendly platform. With a stunning new showroom in Anaheim and a nationwide client base, they needed a site that could match their scale and service quality — and now they have it.",
+    "The new site features a clean, easy-to-navigate layout with large, impactful imagery showcasing their inventory, services, and success stories. Visitors can now explore products, get estimates, and sign up for real-time inventory updates with ease.",
+    "Designed for both English and Spanish-speaking audiences, and optimized for SEO and lead generation, the site is now a true digital extension of the top-tier service they’ve delivered for decades. With better branding, improved UX, and seamless mobile responsiveness, Hotel Services, Inc. is ready to welcome the next wave of clients with confidence."
+  ],
+  "result": "Calls from Google Ads increased by 26% in the first 60 days.",
+  "metric": {
+    "value": "+26%",
+    "label": "calls from Google Ads in the first 60 days"
+  },
+  "order": 14,
+  "featured": false,
+  "hawaii": false
+}

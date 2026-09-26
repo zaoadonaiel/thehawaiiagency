@@ -1,0 +1,29 @@
+{
+  "name": "Al’s Upholstery",
+  "domain": "alsupholsterynm.com",
+  "url": "https://alsupholsterynm.com",
+  "location": "Albuquerque, NM",
+  "image": "../../assets/images/projects/als-upholstery.jpg",
+  "imageAlt": "Al’s Upholstery website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Branding",
+    "UX",
+    "Google Ads"
+  ],
+  "body": [
+    "We partnered with Al’s Upholstery in Albuquerque, NM to elevate their online presence with a sleek new website, refined branding, and a much-improved user experience. The transformation gave them a professional edge that truly reflects the craftsmanship and reputation they’ve built over the years.",
+    "But what really supercharged their growth? Our high-converting Google Ads strategy.",
+    "By developing tailored ad campaigns focused on specific services, targeting the right local audiences, and constantly optimizing performance, we’ve turned their ad spend into consistent revenue. Al’s now receives between 10–30 high-quality leads every month — many of them ready to book right away.",
+    "We monitor and fine-tune everything: keywords, ad copy, landing pages, bidding strategies, and call tracking. The result? A cost-effective, sustainable pipeline of upholstery projects that continues to fuel their growth month after month.",
+    "This isn’t just advertising — it’s a revenue engine. And Al’s Upholstery is a great example of how a strong digital presence, paired with smart ad management, can take a local business to the next level."
+  ],
+  "result": "Calls from Google Ads increased by 62% in the first 90 days.",
+  "metric": {
+    "value": "+62%",
+    "label": "calls from Google Ads in the first 90 days"
+  },
+  "order": 3,
+  "featured": false,
+  "hawaii": false
+}

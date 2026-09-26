@@ -1,0 +1,198 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+import Clock from '~/components/ui/Clock.astro';
+import ContactForm from '~/components/sections/shared/ContactForm.astro';
+import MeetingOptions from '~/components/sections/shared/MeetingOptions.astro';
+import oahu from '~/assets/art/contours-oahu.svg?raw';
+import { site } from '~/data/site';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact The Hawaii Agency',
+    mainEntity: { '@id': `${site.url}/#organization` },
+  },
+];
+---
+
+<BaseLayout
+  title="Contact | The Hawaii Agency"
+  description="Contact The Hawaii Agency — let’s get in touch and discuss your next project. Call (808) 280-1970, email info@thehawaiiagency.com or send us a message."
+  schema={schema}
+  footerCta={false}
+>
+  <section class="contact" data-hero>
+    <div class="contact__contours" aria-hidden="true" set:html={oahu} />
+    <div class="wrap contact__grid">
+      <div class="contact__intro">
+        <div data-hero-item><Breadcrumbs items={[{ label: 'Contact', href: '/contact/' }]} /></div>
+        <h1 class="contact__title" data-split>Contact us.</h1>
+        <p class="t-lead contact__lead" data-hero-item>Let’s get in touch and discuss your next project.</p>
+
+        <dl class="contact__details" data-hero-item>
+          <div>
+            <dt class="t-label">Call or text</dt>
+            <dd><a href={site.phone.href} class="contact__big">{site.phone.display}</a></dd>
+          </div>
+          <div>
+            <dt class="t-label">Email</dt>
+            <dd><a href={`mailto:${site.email}`} class="contact__mid u-link u-link--static">{site.email}</a></dd>
+          </div>
+          <div>
+            <dt class="t-label">Mailing address</dt>
+            <dd>
+              <address>
+                {site.address.street}<br />
+                {site.address.locality}, {site.address.region} {site.address.postalCode}
+              </address>
+            </dd>
+          </div>
+          <div>
+            <dt class="t-label">Local time</dt>
+            <dd><Clock /></dd>
+          </div>
+        </dl>
+        <ul class="contact__social" role="list" data-hero-item>
+          {
+            site.social.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" class="chip">
+                  {s.label}
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="contact__panel" data-hero-item>
+        <h2 class="t-h3">Leave us a message!</h2>
+        <p class="t-small">Fill out this quick form and we’ll reach out to you right away.</p>
+        <ContactForm id="contact" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-navy contact__meet" aria-labelledby="meet-title">
+    <div class="wrap">
+      <p class="t-label">Prefer a call?</p>
+      <h2 id="meet-title" class="t-h1 contact__meet-title" data-split>Schedule a meeting.</h2>
+      <p class="t-body contact__meet-lead">
+        New and existing clients can book a meeting below. We can work via Google Meet (similar to a Zoom call) or a phone
+        call.
+      </p>
+      <MeetingOptions tone="dark" size="large" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    position: relative;
+    overflow: clip;
+    padding: calc(var(--header-h) + 1.5rem) 0 var(--space-section);
+  }
+  .contact__contours {
+    position: absolute;
+    inset: 0;
+    color: var(--c-sky-300);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .contact__contours :global(svg) {
+    position: absolute;
+    left: -20%;
+    bottom: -20%;
+    width: 110%;
+    height: auto;
+  }
+  .contact__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .contact__intro {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+  }
+  .contact__title {
+    margin-top: clamp(1rem, 5vh, 3rem);
+    font-size: var(--fs-mega);
+    line-height: 0.9;
+    letter-spacing: -0.058em;
+  }
+  .contact__lead {
+    max-width: 24rem;
+  }
+  .contact__details {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .contact__details dd {
+    margin-top: 0.4rem;
+  }
+  .contact__details address {
+    font-style: normal;
+    color: var(--c-ink-2);
+  }
+  .contact__big {
+    font-size: var(--fs-h2);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--c-blue);
+    transition: color 0.3s;
+  }
+  .contact__big:hover {
+    color: var(--c-navy);
+  }
+  .contact__mid {
+    font-size: var(--fs-h4);
+  }
+  .contact__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .contact__social a:hover {
+    border-color: var(--c-blue);
+    color: var(--c-blue);
+  }
+  .contact__panel {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+    border-radius: var(--r-l);
+    background: rgb(255 255 255 / 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-lift);
+  }
+  .contact__panel > .t-small {
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 1024px) {
+    .contact__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .contact__intro {
+      grid-column: 1 / 6;
+    }
+    .contact__panel {
+      grid-column: 7 / -1;
+      margin-top: clamp(4rem, 12vh, 9rem);
+    }
+  }
+  .contact__meet-title {
+    margin-top: 1rem;
+  }
+  .contact__meet-lead {
+    max-width: 36rem;
+    margin: 1.25rem 0 var(--space-l);
+  }
+</style>

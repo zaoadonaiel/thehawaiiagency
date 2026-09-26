@@ -1,0 +1,27 @@
+{
+  "name": "Trash Bros Arizona",
+  "domain": "trashbrosarizona.com",
+  "url": "https://trashbrosarizona.com",
+  "location": "Scottsdale, AZ",
+  "image": "../../assets/images/projects/trash-bros-arizona.jpg",
+  "imageAlt": "Trash Bros Arizona website shown on a desktop display",
+  "services": [
+    "Branding",
+    "SEO Copywriting",
+    "Custom Design",
+    "Local SEO"
+  ],
+  "body": [
+    "After going four years without a website, Trash Bros Arizona came to us ready to finally bring their online presence to life — and within days of launching, they began booking new jobs. As a trusted junk removal and demolition company serving Scottsdale and surrounding areas for over a decade, they had built a strong reputation offline but were missing out on a huge chunk of digital traffic.",
+    "We handled the full project from start to finish: branding, SEO copywriting, and custom design, all built with lead generation in mind. Their new site is optimized for local visibility in Scottsdale, Phoenix, Tempe, Paradise Valley, and Fountain Hills — helping them show up where it counts and attract high-intent customers.",
+    "With bold calls-to-action, service-focused content, and a clean user experience, the website now serves as a high-converting platform for their growing business. Trash Bros is now digitally positioned to match the level of service they’ve delivered in person for years."
+  ],
+  "result": "Traffic increased by 32% in the first 60 days.",
+  "metric": {
+    "value": "+32%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 21,
+  "featured": false,
+  "hawaii": false
+}

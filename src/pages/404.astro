@@ -1,0 +1,75 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Button from '~/components/ui/Button.astro';
+import summit from '~/assets/art/contours-summit.svg?raw';
+import { serviceLinks } from '~/data/navigation';
+---
+
+<BaseLayout title="Page not found" description="This page drifted off. Find your way back to The Hawaii Agency." noindex footerCta={false}>
+  <section class="nf" data-hero>
+    <div class="nf__contour" aria-hidden="true" set:html={summit} />
+    <div class="wrap nf__inner">
+      <p class="t-label" data-hero-item>Error 404</p>
+      <h1 class="nf__title" data-split>This page drifted off.</h1>
+      <p class="t-lead nf__lead" data-hero-item>
+        The page you’re looking for may have moved when we redesigned the site. Try one of these instead.
+      </p>
+      <div class="nf__ctas" data-hero-item>
+        <Button href="/" size="l">Back to home</Button>
+        <Button href="/contact/" variant="ghost" size="l">Contact us</Button>
+      </div>
+      <ul role="list" class="nf__links" data-hero-item>
+        {serviceLinks.map((s) => <li><a class="chip" href={s.href}>{s.label}</a></li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    position: relative;
+    overflow: clip;
+    min-height: 92svh;
+    display: grid;
+    align-items: center;
+    padding: calc(var(--header-h) + 2rem) 0 var(--space-xl);
+  }
+  .nf__contour {
+    position: absolute;
+    right: -15%;
+    top: 50%;
+    width: min(90vw, 900px);
+    translate: 0 -50%;
+    color: var(--c-sky-300);
+    opacity: 0.5;
+  }
+  .nf__inner {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .nf__title {
+    font-size: var(--fs-display);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    max-width: 12ch;
+  }
+  .nf__lead {
+    max-width: 32rem;
+  }
+  .nf__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .nf__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    max-width: 44rem;
+  }
+  .nf__links a:hover {
+    border-color: var(--c-blue);
+    color: var(--c-blue);
+  }
+</style>

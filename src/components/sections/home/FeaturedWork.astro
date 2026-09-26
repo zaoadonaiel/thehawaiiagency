@@ -1,0 +1,366 @@
+---
+/**
+ * Selected work: two editorial features set at different scroll speeds,
+ * followed by an index of island projects with a cursor-following preview.
+ */
+import { Picture } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import { featuredWorkIntro } from '~/data/studio';
+
+const all = await getCollection('projects');
+const featured = all.filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order);
+const island = all
+  .filter((p) => p.data.hawaii && !p.data.featured && p.data.metric)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 7);
+---
+
+<section class="work section" aria-labelledby="work-title">
+  <div class="wrap work__head">
+    <Eyebrow index="03">Selected work</Eyebrow>
+    <h2 id="work-title" class="t-display work__title" data-split>Featured projects &amp; case studies.</h2>
+    <div class="work__intro">
+      {featuredWorkIntro.map((p) => <p class="t-body" data-reveal>{p}</p>)}
+    </div>
+  </div>
+
+  <div class="wrap work__features">
+    {
+      featured.map((p, i) => (
+        <article class:list={['feat', `feat--${i + 1}`]}>
+          <a href={`/case-studies/${p.id}/`} class="feat__link">
+            <div class="feat__media" data-clip style="--clip-radius: 28px">
+              <div class="feat__inner" data-parallax={i === 0 ? '0.12' : '0.2'}>
+                <Picture
+                  src={p.data.image}
+                  alt={p.data.imageAlt}
+                  widths={[600, 900, 1300]}
+                  sizes={i === 0 ? '(min-width: 1024px) 56vw, 100vw' : '(min-width: 1024px) 36vw, 100vw'}
+                  formats={['avif']} fallbackFormat="webp"
+                  loading="lazy"
+                />
+              </div>
+              <span class="feat__view" aria-hidden="true">
+                View case
+              </span>
+            </div>
+            <div class="feat__body">
+              <p class="feat__loc t-label">{p.data.location}</p>
+              <h3 class="feat__name">{p.data.name}</h3>
+              <ul class="feat__tags" role="list">
+                {p.data.services.map((s) => (
+                  <li class="chip">{s}</li>
+                ))}
+              </ul>
+              {p.data.result && <p class="feat__result">{p.data.result}</p>}
+            </div>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="wrap work__index" data-hover-preview>
+    <div class="work__index-head">
+      <p class="t-label">More from the islands</p>
+      <p class="t-label work__index-cols" aria-hidden="true"><span>Location</span><span>Result</span></p>
+    </div>
+    <ol role="list" class="work__list">
+      {
+        island.map((p) => (
+          <li data-preview-item={p.id}>
+            <a href={`/case-studies/${p.id}/`} class="row">
+              <span class="row__name">{p.data.name}</span>
+              <span class="row__loc">{p.data.location}</span>
+              <span class="row__metric">
+                <strong>{p.data.metric?.value}</strong>
+                <span>{p.data.metric?.label}</span>
+              </span>
+              <span class="row__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="work__preview" data-preview-figure aria-hidden="true">
+      {
+        island.map((p) => (
+          <Picture
+            src={p.data.image}
+            alt=""
+            widths={[420, 640]}
+            sizes="320px"
+            formats={['avif']} fallbackFormat="webp"
+            loading="lazy"
+            data-preview-key={p.id}
+            class="work__preview-img"
+          />
+        ))
+      }
+    </div>
+    <div class="work__cta">
+      <Button href="/case-studies/" variant="ghost" size="l">All {all.length} case studies</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work__head {
+    display: grid;
+    gap: 1.5rem var(--gutter);
+    margin-bottom: var(--space-xl);
+  }
+  .work__title {
+    max-width: 12ch;
+  }
+  .work__intro {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 30rem;
+  }
+  @media (min-width: 1024px) {
+    .work__head {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+    }
+    .work__head > :global(.eyebrow) {
+      grid-column: 1 / -1;
+    }
+    .work__title {
+      grid-column: 1 / 8;
+    }
+    .work__intro {
+      grid-column: 9 / -1;
+    }
+  }
+
+  /* features */
+  .work__features {
+    display: grid;
+    gap: var(--space-xl) var(--gutter);
+  }
+  .feat__link {
+    display: grid;
+    gap: 1.5rem;
+    border-radius: var(--r-l);
+  }
+  .feat__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-l);
+    overflow: hidden;
+    background: var(--c-sky-100);
+  }
+  .feat--1 .feat__media {
+    aspect-ratio: 1 / 1;
+  }
+  .feat__inner {
+    position: absolute;
+    inset: -6% 0;
+  }
+  .feat__inner :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease-out);
+  }
+  .feat__inner :global(picture) {
+    display: contents;
+  }
+  .feat__link:hover .feat__inner :global(img) {
+    transform: scale(1.05);
+  }
+  .feat__view {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background: var(--c-navy);
+    color: var(--c-white);
+    font-size: 0.875rem;
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    transition: transform 0.6s var(--ease-spring), opacity 0.35s;
+  }
+  .feat__link:hover .feat__view {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  .feat__body {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .feat__name {
+    font-size: var(--fs-h2);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    transition: color 0.3s;
+  }
+  .feat__link:hover .feat__name {
+    color: var(--c-blue);
+  }
+  .feat__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .feat__result {
+    font-size: var(--fs-small);
+    color: var(--c-ink-2);
+    max-width: 36ch;
+  }
+  @media (min-width: 1024px) {
+    .work__features {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: start;
+    }
+    .feat--1 {
+      grid-column: 1 / 8;
+    }
+    .feat--2 {
+      grid-column: 9 / -1;
+      margin-top: 14rem;
+    }
+  }
+
+  /* index */
+  .work__index {
+    position: relative;
+    margin-top: var(--space-xl);
+  }
+  .work__index-head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--c-line-strong);
+  }
+  .work__index-cols {
+    display: none;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.35rem 1.5rem;
+    align-items: baseline;
+    padding-block: 1.35rem;
+    border-bottom: 1px solid var(--c-line);
+    transition: padding 0.5s var(--ease-out), color 0.3s;
+  }
+  .row__name {
+    font-size: var(--fs-h3);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .row__loc {
+    grid-column: 1;
+    font-size: var(--fs-small);
+    color: var(--c-ink-3);
+  }
+  .row__metric {
+    grid-column: 1;
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    font-size: var(--fs-small);
+    color: var(--c-ink-2);
+  }
+  .row__metric strong {
+    font-weight: 500;
+    color: var(--c-blue);
+  }
+  .row__arrow {
+    grid-column: 2;
+    grid-row: 1;
+    color: var(--c-blue);
+    opacity: 0.4;
+    transition: transform 0.5s var(--ease-out), opacity 0.3s;
+  }
+  .row:hover,
+  .row:focus-visible {
+    color: var(--c-blue);
+  }
+  .row:hover .row__arrow,
+  .row:focus-visible .row__arrow {
+    opacity: 1;
+    transform: translateX(6px);
+  }
+  .work__preview {
+    display: none;
+  }
+  .work__cta {
+    margin-top: var(--space-l);
+  }
+  @media (min-width: 900px) {
+    .work__index-cols {
+      display: flex;
+      gap: 0;
+      width: 58%;
+    }
+    .work__index-cols span {
+      flex: 1;
+    }
+    .row {
+      grid-template-columns: 1fr 0.7fr 1.3fr auto;
+      align-items: center;
+    }
+    .row__loc,
+    .row__metric {
+      grid-column: auto;
+    }
+    .row__arrow {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .row:hover {
+      padding-left: 1rem;
+    }
+  }
+  @media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+    .work__preview {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 5;
+      width: 18rem;
+      aspect-ratio: 4 / 3.35;
+      margin: -8.4rem 0 0 -9rem;
+      border-radius: var(--r-m);
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0;
+      scale: 0.6;
+      box-shadow: var(--shadow-lift);
+      transition: opacity 0.35s, scale 0.5s var(--ease-out);
+    }
+    .work__preview:global(.is-visible) {
+      opacity: 1;
+      scale: 1;
+    }
+    .work__preview :global(picture) {
+      display: contents;
+    }
+    .work__preview :global(img) {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .work__preview :global(img.is-active) {
+      opacity: 1;
+    }
+  }
+</style>

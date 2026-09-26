@@ -1,0 +1,26 @@
+{
+  "name": "Mars Hot Chicken",
+  "domain": "marshotchicken.com",
+  "url": "https://marshotchicken.com",
+  "location": "Fort Lauderdale, FL",
+  "image": "../../assets/images/projects/mars-hot-chicken.jpg",
+  "imageAlt": "Mars Hot Chicken website shown on a desktop display",
+  "services": [
+    "Custom Website",
+    "Online Ordering",
+    "48-Hour Delivery"
+  ],
+  "body": [
+    "Located in the heart of one of Fort Lauderdale’s busiest tourist hubs — right across from the beach at 3146 NE 9th St — Mars Hot Chicken needed a professional website fast. With high foot traffic, a prime location, and growing buzz around their food, they couldn’t afford to wait.",
+    "Thanks to our Florida office based in Tampa, we were able to jump in immediately and deliver a fully custom website in just 48 hours. The site captures the bold flavor and energy of their brand, complete with crave-worthy menu visuals, strong calls to action, and seamless mobile ordering.",
+    "Now, whether it’s hungry tourists passing by or locals discovering them online, Mars Hot Chicken is ready to serve — with a digital presence as hot as their chicken."
+  ],
+  "result": "Immediately people could order online, which increased their sales by 27% in the first week.",
+  "metric": {
+    "value": "+27%",
+    "label": "sales in the first week, with online ordering live"
+  },
+  "order": 22,
+  "featured": false,
+  "hawaii": false
+}

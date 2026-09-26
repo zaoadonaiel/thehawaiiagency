@@ -1,0 +1,22 @@
+{
+  "name": "HAWAII.GALLERY",
+  "domain": "hawaii.gallery",
+  "url": "https://hawaii.gallery",
+  "location": "Hana, HI",
+  "image": "../../assets/images/projects/hawaii-gallery.jpg",
+  "imageAlt": "HAWAII.GALLERY online store shown on a desktop display",
+  "services": [
+    "Custom Web Design",
+    "Ecommerce",
+    "Search Engine Optimization",
+    "Content Delivery Network Security"
+  ],
+  "body": [
+    "A custom-designed ecommerce storefront for HAWAII.GALLERY, with search engine optimization and content delivery network security built in."
+  ],
+  "result": null,
+  "metric": null,
+  "order": 2,
+  "featured": true,
+  "hawaii": true
+}

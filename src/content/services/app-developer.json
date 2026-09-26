@@ -1,0 +1,75 @@
+{
+  "order": 2,
+  "name": "Mobile App Development",
+  "short": "Mobile Apps",
+  "seoTitle": "App Developer Hawaii | iOS & Android App Development",
+  "seoDescription": "Meet your new iOS & Android app developer in Hawaii. Custom mobile app design and development with React Native, Flutter and Ionic — from concept to launch and beyond.",
+  "heroTitle": "Mobile app development.",
+  "heroTagline": "Meet your new iOS & Android app developer in Hawaii.",
+  "summary": "Custom iOS and Android apps — from concept and UI/UX design to beta, launch, hosting and ongoing support — built with React Native, Flutter and Ionic.",
+  "intro": {
+    "heading": "Mobile app design & development services in Hawaii",
+    "paragraphs": [
+      "At The Hawaii Agency, we specialize in creating innovative and user-friendly mobile apps tailored to meet the unique needs of businesses in Hawaii. Our comprehensive app design and development services encompass everything from initial concept to final deployment, ensuring that your app stands out in the competitive digital landscape.",
+      "We understand that every business is different, which is why we offer fully customized app solutions that align with your brand identity and objectives. Whether you need an iOS or Android app, our team of experienced developers uses cutting-edge technologies such as React Native, Flutter, and Ionic to bring your ideas to life."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "User-centric app design",
+      "heading": "Intuitive, engaging and easy to navigate",
+      "paragraphs": [
+        "We prioritize user experience (UX) and interface (UI) design to ensure that your app is intuitive, engaging, and easy to navigate. By conducting thorough user research and incorporating feedback throughout the development process, we create apps that resonate with your target audience and drive user engagement.",
+        "We use a few different options when designing. From a flat PDF to a Figma prototype, we use whatever it takes to make sure that the client can work with it, as well as making sure it meets their budget. In fact, the design is crucial and just as time-consuming as the development portion — but both are just as fun."
+      ]
+    },
+    {
+      "kicker": "Ongoing support & maintenance",
+      "heading": "Our commitment doesn’t end at launch",
+      "paragraphs": [
+        "We provide ongoing support and maintenance services to ensure that your app remains up-to-date, secure, and optimized for performance. From bug fixes to feature enhancements, we’re here to support your app’s success every step of the way. Additionally, our hosting solutions allow you to have an easy ongoing support system with us."
+      ]
+    },
+    {
+      "kicker": "The safest choice",
+      "heading": "App design & development you can rely on",
+      "paragraphs": [
+        "When it comes to app development in Hawaii, The Hawaii Agency stands out as the premier choice for businesses seeking reliability, innovation, and exceptional service. Our team of skilled developers is proficient in using cutting-edge technologies such as React Native, Flutter, and Ionic to create robust and feature-rich mobile applications."
+      ],
+      "tags": [
+        "React Native",
+        "Flutter",
+        "Ionic",
+        "iOS",
+        "Android",
+        "Figma prototypes"
+      ]
+    },
+    {
+      "kicker": "Complete app design & development",
+      "heading": "A one-stop shop, from concept to launch",
+      "paragraphs": [
+        "At The Hawaii Agency, we offer a one-stop shop app experience that is tailored to meet the unique needs of businesses and entrepreneurs in Hawaii. We are experienced designers and developers that are committed to delivering high-quality, custom-built mobile apps built unique to your needs.",
+        "From concept to design, beta and launch, we handle every aspect of the app development process with precision and attention to detail. Our screen sharing meetings are integral so that we can execute the app you want along with its unique functionalities. Every app is different and thought out to a tee. This is why we include in-person or screen share meetings."
+      ]
+    }
+  ],
+  "steps": [
+    "Concept",
+    "Design",
+    "Beta",
+    "Launch"
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "If you’re ready to take your business to the next level with a custom mobile app, contact The Hawaii Agency today for a free consultation. Let us help you turn your ideas into reality and create an app that sets you apart from the competition."
+    ]
+  },
+  "faq": "app-development",
+  "related": [
+    "im-in-hawaii",
+    "hawaii-gallery"
+  ],
+  "image": "../../assets/images/art/service-app-developer.webp"
+}

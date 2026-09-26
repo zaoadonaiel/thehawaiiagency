@@ -1,0 +1,70 @@
+{
+  "order": 9,
+  "name": "Cloud Phone Systems",
+  "short": "Phone Systems",
+  "seoTitle": "Cloud Phone Systems Hawaii | 3CX PBX Installation",
+  "seoDescription": "Cloud-based phone system services for Hawaii businesses — 3CX PBX installation, call routing, voicemail to email, mobile integration, training and support.",
+  "heroTitle": "Phone system solutions.",
+  "heroTagline": "Cloud-based phone system services for Hawaii businesses.",
+  "summary": "3CX cloud PBX — call routing, voicemail to email, call recording and mobile integration on your own encrypted cloud server, installed and supported by us.",
+  "intro": {
+    "heading": "Hawaii phone system installation",
+    "paragraphs": [
+      "When it comes to phone system installation in Hawaii, we offer cutting-edge solutions with 3CX, a cloud-based PBX system. With this technology, known as Private Branch Exchange, all calls are directed, monitored, and voicemail is implemented within your own cloud system. What sets this apart is the flexibility it offers — whether you’re using an office phone, your cell phone, or your employees’ cell phones, you have seamless integration. This up-and-coming technology is not only effective but also extremely affordable compared to other outdated phone systems.",
+      "We understand the importance of staying ahead in technology, especially in a fast-paced environment like Hawaii. With 3CX, we provide businesses with a modern and versatile phone system that meets their needs. With features like call routing, voicemail to email, and mobile integration, our clients can enjoy enhanced communication capabilities without the hassle and cost associated with traditional phone systems."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "Benefits of our cloud phone systems",
+      "heading": "Connected wherever business takes you",
+      "paragraphs": [
+        "Our cloud phone systems offer a range of benefits that enhance communication for Hawaii businesses. With features like call recording, customizable extensions, and the ability to ring to multiple users via an app or office phone, our systems provide functionality similar to traditional VoIP phone systems, but with added flexibility. Whether you’re traveling to the mainland or around the world, our phone systems are easily accessible. Plus, since you’re on your own cloud server, you’ll enjoy minimal costs while having full encrypted security for all your calls right at your fingertips.",
+        "Our cloud phone systems are scalable to grow with your business. Whether you’re a small startup or a large corporation, our systems can accommodate your needs without the hassle of investing in additional hardware. You’ll also benefit from centralized management, allowing you to easily add or remove users, configure settings, and monitor call activity from one intuitive dashboard. Our systems offer reliable uptime and robust disaster recovery features, ensuring that your business communications remain uninterrupted, even in the event of an outage or emergency."
+      ],
+      "tags": [
+        "3CX",
+        "Call routing",
+        "Voicemail to email",
+        "Call recording",
+        "Custom extensions",
+        "Mobile app",
+        "Encrypted calls",
+        "Disaster recovery"
+      ]
+    },
+    {
+      "kicker": "Flexibility & affordability",
+      "heading": "PBX services without the technician fees",
+      "paragraphs": [
+        "Our PBX services offer unparalleled flexibility and affordability for businesses in Hawaii. Installation and maintenance costs are extremely low compared to traditional phone systems, and since they run on top-tier cloud servers, you can expect reliable performance at all times. The pricing for our PBX services varies depending on the number of phone numbers, extensions, and features you require, but the initial cost is always cost-effective.",
+        "With our remote management capabilities, you have the flexibility to make changes to your PBX system without the need for onsite visits or expensive technician fees. This allows you to adapt your phone system to your evolving business needs quickly and efficiently."
+      ]
+    },
+    {
+      "kicker": "Complete cloud phone system services",
+      "heading": "Set up, trained and secured",
+      "paragraphs": [
+        "Our complete phone system services cover every aspect of setting up and managing your PBX system. We start by setting up the server and configuring it according to your specific requirements. Whether you prefer an on-premise solution or a cloud-based setup, we ensure that your phone system is up and running smoothly.",
+        "Once the server is set up, we install the necessary applications on your devices and guide you through the process of using them effectively. Our team provides comprehensive training to you, your business partners, or administrators, ensuring that everyone understands how to make the most out of the system’s features. We also prioritize security, implementing robust measures to protect your communications from unauthorized access or cyber threats.",
+        "We also show you how to delegate phone numbers to other users and remove them as needed, so everyone in your organization has the access they need to stay connected."
+      ]
+    }
+  ],
+  "steps": [
+    "Server setup",
+    "Configuration",
+    "Device apps",
+    "Training",
+    "Ongoing support"
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "We understand that our PBX services may be new to you, especially in Hawaii, and we’re here to answer any questions you may have and provide personalized recommendations tailored to your business."
+    ]
+  },
+  "faq": null,
+  "related": [],
+  "image": "../../assets/images/art/service-phone-systems.webp"
+}

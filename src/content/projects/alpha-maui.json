@@ -1,0 +1,45 @@
+{
+  "name": "Alpha Maui",
+  "domain": "alphamaui.com",
+  "url": "https://alphamaui.com",
+  "location": "Makawao, HI",
+  "image": "../../assets/images/projects/alpha-maui.jpg",
+  "imageAlt": "Alpha Maui website shown on a desktop display",
+  "services": [
+    "Custom Design",
+    "Ecommerce",
+    "SEO & Performance",
+    "Owner Training"
+  ],
+  "body": [
+    "We partnered with Alpha Maui, a prominent clothing and lifestyle brand based in Hawaii, to completely revamp their outdated online presence. While their storefront performed steadily, their original website failed to capture the brand’s true essence and was underperforming in online sales.",
+    "We designed and developed a custom, high-performance eCommerce website tailored specifically to the Alpha Maui aesthetic — vibrant, modern, and deeply rooted in the Aloha spirit. The new site is not only visually stunning but also fully responsive and optimized for usability across all devices.",
+    "Since launch, Alpha Maui has seen a surge in online sales, improved customer engagement, and a stronger digital brand presence. Alpha Maui now has an online store that truly reflects the quality of their products and the spirit of their island roots — a professional-grade site ready to support their growth into a global beach lifestyle brand."
+  ],
+  "result": "Sales increased by 26% in the first 30 days.",
+  "metric": {
+    "value": "+26%",
+    "label": "sales in the first 30 days"
+  },
+  "order": 5,
+  "featured": false,
+  "hawaii": true,
+  "highlights": [
+    {
+      "title": "Completely Custom Design",
+      "text": "A handcrafted, visually rich design reflecting Alpha Maui’s beachwear and island-inspired vibe. Each product is showcased with immersive imagery that speaks to the brand’s identity."
+    },
+    {
+      "title": "eCommerce Optimization",
+      "text": "Seamless user experience for browsing, shopping, and checkout, leading to a massive increase in online conversions."
+    },
+    {
+      "title": "Owner Empowerment",
+      "text": "We trained the Alpha Maui team in managing their own inventory, basic SEO, and eCommerce best practices — giving them the tools to scale and succeed independently."
+    },
+    {
+      "title": "SEO & Performance Boost",
+      "text": "Implemented essential SEO strategies, site speed optimization, and backend clean-up — significantly improving search rankings and driving organic traffic."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+---
+import summit from '~/assets/art/contours-summit.svg?raw';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import { homeIntro } from '~/data/studio';
+import { site } from '~/data/site';
+
+const stats = [
+  { value: '20+', label: 'Years of branding experience', note: 'Over two decades' },
+  { value: '14', label: 'Years of web design & development' },
+  { value: `${site.rating.count}`, label: 'Five-star reviews on Google' },
+  { value: '3', label: 'Languages — English, Spanish & Portuguese' },
+];
+---
+
+<section class="stmt section" aria-labelledby="stmt-title" data-draw-trigger>
+  <div class="stmt__contour" aria-hidden="true">
+    <div class="stmt__svg" set:html={summit.replace('<svg ', '<svg data-draw ')} />
+  </div>
+
+  <div class="wrap stmt__grid">
+    <div class="stmt__label">
+      <Eyebrow index="01">The studio</Eyebrow>
+    </div>
+    <h2 id="stmt-title" class="stmt__text" data-scrub-words>
+      We at The Hawaii Agency have over two decades of branding experience and 14 years of web design and development
+      experience. We bring value, beauty and a great experience — all in one agency.
+    </h2>
+    <div class="stmt__side">
+      <p class="t-h4">{homeIntro.title}</p>
+      <p class="t-body" data-reveal>{homeIntro.text}</p>
+      <a href="/about/" class="stmt__link u-link u-link--static">Meet the studio</a>
+    </div>
+  </div>
+
+  <dl class="wrap stmt__stats" data-stagger>
+    {
+      stats.map((s) => (
+        <div class="stmt__stat">
+          <dt class="t-small">{s.label}</dt>
+          <dd class="stmt__num t-num" data-count>
+            {s.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  .stmt {
+    overflow: clip;
+  }
+  .stmt__contour {
+    position: absolute;
+    right: -12vw;
+    top: 4%;
+    width: min(62vw, 900px);
+    aspect-ratio: 1;
+    color: var(--c-sky-300);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .stmt__svg,
+  .stmt__svg :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .stmt__grid {
+    position: relative;
+    display: grid;
+    gap: 2rem var(--gutter);
+  }
+  .stmt__text {
+    font-size: var(--fs-h2);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    max-width: 22ch;
+    text-wrap: pretty;
+  }
+  .stmt__text :global(.scrub-word) {
+    will-change: opacity;
+  }
+  .stmt__side {
+    display: grid;
+    gap: 1rem;
+    max-width: 30rem;
+    align-content: start;
+  }
+  .stmt__link {
+    justify-self: start;
+    color: var(--c-blue);
+    font-size: 0.975rem;
+  }
+  .stmt__stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem var(--gutter);
+    margin-top: var(--space-xl);
+  }
+  .stmt__stat {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .stmt__stat dt {
+    max-width: 18ch;
+  }
+  .stmt__num {
+    font-size: clamp(3rem, 1.8rem + 4.4vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: var(--c-ink);
+  }
+  @media (min-width: 1024px) {
+    .stmt__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .stmt__label {
+      grid-column: 1 / 3;
+      padding-top: 0.9rem;
+    }
+    .stmt__text {
+      grid-column: 3 / 12;
+    }
+    .stmt__side {
+      grid-column: 8 / 12;
+      margin-top: 2rem;
+    }
+    .stmt__stats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

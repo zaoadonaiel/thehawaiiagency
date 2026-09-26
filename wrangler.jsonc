@@ -1,0 +1,12 @@
+// Only used if you deploy as a Cloudflare *Worker* (Workers & Pages → Create → Worker → Import a repository).
+// Cloudflare *Pages* projects skip this file and use the dashboard settings instead (see README).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "thehawaiiagency",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

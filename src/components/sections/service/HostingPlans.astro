@@ -1,0 +1,222 @@
+---
+import { hostingIncluded, hostingPlans } from '~/data/hosting';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+---
+
+<section class="plans section surface-navy" id="plans" aria-labelledby="plans-title">
+  <div class="wrap">
+    <div class="plans__head">
+      <Eyebrow>Hosting pricing</Eyebrow>
+      <h2 id="plans-title" class="t-h1" data-split>Fully-managed servers for businesses &amp; developers.</h2>
+      <div class="plans__inc">
+        <p class="t-label">Included with every plan</p>
+        <ul role="list">
+          {hostingIncluded.map((i) => <li class="chip">{i}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <ol class="plans__grid" role="list" data-stagger>
+      {
+        hostingPlans.map((p) => (
+          <li class:list={['plan', { 'plan--featured': p.featured }]} id={`plan-${p.id}`}>
+            <div class="plan__top">
+              <h3 class="plan__name">{p.name}</h3>
+              {p.featured && <span class="plan__badge">Most popular</span>}
+            </div>
+            <p class="plan__kind">{p.kind}</p>
+            <p class="plan__price">
+              <strong>{p.price}</strong>
+              <span>/mo</span>
+            </p>
+            <p class="plan__setup">{p.setup ?? 'No setup fee'}</p>
+            <p class="plan__for">{p.forWhom}</p>
+            <ul role="list" class="plan__specs">
+              {p.specs.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ul>
+            <a class="plan__cta" href={p.href} target="_blank" rel="noopener noreferrer">
+              Get started
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M8 16 16 8M9 8h7v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+              <span class="sr-only">with {p.name} (opens Stripe checkout in a new tab)</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .plans__head {
+    display: grid;
+    gap: 1.5rem var(--gutter);
+    margin-bottom: var(--space-l);
+  }
+  .plans__head h2 {
+    max-width: 16ch;
+  }
+  .plans__inc {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .plans__inc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  @media (min-width: 1024px) {
+    .plans__head {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+    }
+    .plans__head > :global(.eyebrow) {
+      grid-column: 1 / -1;
+    }
+    .plans__head h2 {
+      grid-column: 1 / 8;
+    }
+    .plans__inc {
+      grid-column: 9 / -1;
+    }
+  }
+  .plans__grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .plans__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .plans__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    border-radius: var(--r-l);
+    border: 1px solid var(--c-line-light);
+    background: rgb(255 255 255 / 0.04);
+    transition: background 0.4s, transform 0.5s var(--ease-out), border-color 0.4s;
+    scroll-margin-top: calc(var(--header-h) + 2rem);
+  }
+  .plan:hover {
+    background: rgb(255 255 255 / 0.08);
+    transform: translateY(-6px);
+  }
+  .plan:target {
+    border-color: var(--c-powder);
+  }
+  .plan--featured {
+    background: var(--c-white);
+    color: var(--c-ink);
+    border-color: var(--c-white);
+  }
+  .plan--featured:hover {
+    background: var(--c-white);
+  }
+  .plan__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .plan__name {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .plan--featured .plan__name {
+    color: var(--c-ink);
+  }
+  .plan__badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--r-pill);
+    background: var(--c-blue);
+    color: var(--c-white);
+    font-size: 0.75rem;
+  }
+  .plan__kind,
+  .plan__setup,
+  .plan__for {
+    font-size: 0.875rem;
+    color: rgb(255 255 255 / 0.66);
+  }
+  .plan--featured :is(.plan__kind, .plan__setup, .plan__for) {
+    color: var(--c-ink-3);
+  }
+  .plan__price {
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+  .plan__price strong {
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .plan__price span {
+    color: rgb(255 255 255 / 0.66);
+  }
+  .plan--featured .plan__price span {
+    color: var(--c-ink-3);
+  }
+  .plan__for {
+    color: rgb(255 255 255 / 0.85);
+  }
+  .plan__specs {
+    display: grid;
+    gap: 0.45rem;
+    margin-block: 1rem 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--c-line-light);
+    font-size: 0.9rem;
+  }
+  .plan--featured .plan__specs {
+    border-color: var(--c-line);
+  }
+  .plan__specs li {
+    display: grid;
+    grid-template-columns: 0.9rem 1fr;
+    gap: 0.5rem;
+  }
+  .plan__specs li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-top: 0.55em;
+    border-radius: 50%;
+    background: var(--c-sky-300);
+  }
+  .plan__cta {
+    margin-top: auto;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--r-pill);
+    background: rgb(255 255 255 / 0.1);
+    font-size: 0.9375rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  .plan__cta:hover {
+    background: var(--c-white);
+    color: var(--c-navy);
+  }
+  .plan--featured .plan__cta {
+    background: var(--c-navy);
+    color: var(--c-white);
+  }
+  .plan--featured .plan__cta:hover {
+    background: var(--c-blue);
+  }
+</style>

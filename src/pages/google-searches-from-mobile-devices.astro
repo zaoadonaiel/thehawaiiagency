@@ -1,0 +1,13 @@
+---
+/* Original article URL preserved at the site root. */
+import { getEntry, render } from 'astro:content';
+import ArticleLayout from '~/layouts/ArticleLayout.astro';
+
+const post = await getEntry('blog', 'google-searches-from-mobile-devices');
+if (!post) throw new Error('Missing blog entry: google-searches-from-mobile-devices');
+const { Content } = await render(post);
+---
+
+<ArticleLayout post={post} path="/google-searches-from-mobile-devices/">
+  <Content />
+</ArticleLayout>

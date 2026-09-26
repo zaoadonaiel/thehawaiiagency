@@ -1,0 +1,24 @@
+{
+  "name": "Thor Electric",
+  "domain": "thorelectricestablishment.com",
+  "url": "https://thorelectricestablishment.com",
+  "location": "Irvine, CA",
+  "image": "../../assets/images/projects/thor-electric.jpg",
+  "imageAlt": "Thor Electric website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Lead Generation"
+  ],
+  "body": [
+    "We partnered with Thor Electric, a trusted electrical contractor serving all of Orange County, CA, to create a clean, professional website that reflects their 15+ years of industry expertise and exceptional customer service. With a growing base of residential and commercial clients, Thor Electric needed a modern digital presence that would showcase their work, generate leads, and highlight the personal, responsive approach that sets them apart.",
+    "The new website features a streamlined layout, bold service categories, and a testimonial-driven design that builds trust from the first click. From LED conversions to large-scale commercial installations, users can now explore Thor’s full range of services with ease, and contact the team directly with just a tap or click. Mobile-optimized and built for speed, the site is a powerful tool for a company that prides itself on showing up, getting it done right, and exceeding expectations."
+  ],
+  "result": "Traffic increased by 34% in the first 60 days.",
+  "metric": {
+    "value": "+34%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 16,
+  "featured": false,
+  "hawaii": false
+}

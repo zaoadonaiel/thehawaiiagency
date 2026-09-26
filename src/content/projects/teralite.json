@@ -1,0 +1,26 @@
+{
+  "name": "Teralite",
+  "domain": "teralite.com",
+  "url": "https://teralite.com",
+  "location": "San Jose, CA",
+  "image": "../../assets/images/projects/teralite.jpg",
+  "imageAlt": "Teralite website shown on a desktop display",
+  "services": [
+    "Website Modernization",
+    "Messaging",
+    "Performance"
+  ],
+  "body": [
+    "With over 60 years in the industrial flooring industry, Teralite is a name that carries serious weight. But their old digital presence didn’t reflect their legacy — or their innovation. That’s where we came in.",
+    "We partnered with Teralite to modernize their website, streamline their messaging, and create a user experience that matched the quality of their work. Now featuring a clean, responsive design and optimized performance, the new site showcases their proprietary systems and nationwide reach — from California to Hawaii and Washington.",
+    "This updated digital platform has helped position them as a forward-thinking leader in resinous and epoxy flooring, attracting more high-quality leads and reinforcing trust with both longtime and new clients."
+  ],
+  "result": "Traffic increased by 56% in the first 60 days.",
+  "metric": {
+    "value": "+56%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 20,
+  "featured": false,
+  "hawaii": false
+}

@@ -1,0 +1,73 @@
+{
+  "order": 1,
+  "name": "Web Design",
+  "short": "Web Design",
+  "seoTitle": "Web Design Hawaii | Custom Websites for Hawaii Businesses",
+  "seoDescription": "Creative & customized websites for Hawaii businesses — custom web design, development, hosting and monthly care from The Hawaii Agency. Book a free consultation.",
+  "heroTitle": "Web design solutions.",
+  "heroTagline": "Creative & customized websites for Hawaii businesses.",
+  "summary": "Custom websites built from scratch — WordPress, Vue.js, React.js or fully custom PHP — tailored to your goals, with hosting and support after launch.",
+  "intro": {
+    "heading": "Hawaii web design solutions",
+    "paragraphs": [
+      "For those seeking to establish a standout online presence, navigating the realm of web design can feel overwhelming. At The Hawaii Agency, we’ve honed our expertise in web design to deliver exceptional results. Our custom websites in Hawaii are tailored to suit the needs of every client, whether they’re targeting a broad audience or a specific niche market.",
+      "Whether you’re looking to refresh your current website, transition to a more accessible platform, or incorporate custom features for improved usability, our web design solutions are designed with your goals in mind. We prioritize functionality and inclusivity, delivering sleek and modern designs with a variety of customization options to align with your brand identity.",
+      "Each web design project is unique, and we guide our clients through a series of questions to ensure we capture the right details and create a masterpiece of a website. Upon completion, we also offer hosting services on our reliable servers, providing uptime monitoring, backups, and 24/7 support for a stress-free experience from start to finish."
+    ]
+  },
+  "sections": [
+    {
+      "kicker": "Benefits of new web design",
+      "heading": "The advantages of investing in new web design",
+      "paragraphs": [
+        "In today’s digital age, web design plays a crucial role in the success of businesses. Whether you’re targeting online customers or not, your website serves as your virtual storefront, elevator pitch, office, and store all rolled into one. With the vast number of online searches for businesses, services, and products, having a professional and user-friendly website is essential.",
+        "By investing in a new web design for your Hawaii-based business, you demonstrate to both tourists and local residents that you prioritize professionalism and customer experience. A well-designed website reflects positively on your brand, instilling confidence in potential customers that you will take care of their needs.",
+        "Web design goes beyond aesthetics; it creates an immersive experience for visitors, making them feel as if they’ve already interacted with your brand and employees. It’s like offering a taste of what your business has to offer, leaving them wanting more.",
+        "The benefits of a new web design are tangible and immediate. Many businesses see a noticeable improvement in website performance and customer engagement within the first month. While results may vary, the key is to act now before your competitors seize all the online traffic."
+      ]
+    },
+    {
+      "kicker": "Features & options",
+      "heading": "Web design services that stand out and drive results",
+      "paragraphs": [
+        "Our team specializes in creating custom websites from scratch, tailored to your specific needs and preferences. Whether you’re looking for a simple WordPress site, a dynamic Vue.js or React.js application, or a fully customized PHP solution, we’ve got you covered.",
+        "With our expertise in HTML and CSS, we can ensure that your website not only looks stunning but also functions flawlessly across all devices. We can integrate plugins and develop custom APIs to add any functionality you desire, whether it’s e-commerce, booking systems, or anything else.",
+        "The advantage of working with us is our extensive development and design experience, combined with our focus on user experience (UI/UX) design. We take the time to understand your business goals and target audience to create a website that not only looks great but also drives conversions and engagement."
+      ],
+      "tags": [
+        "WordPress",
+        "Vue.js",
+        "React.js",
+        "Custom PHP",
+        "HTML & CSS",
+        "Custom APIs",
+        "E-commerce",
+        "Booking systems"
+      ]
+    },
+    {
+      "kicker": "Complete web design services",
+      "heading": "With you from start to finish — and for the long haul",
+      "paragraphs": [
+        "Looking for a complete web design agency that works with you from start to finish? With The Hawaii Agency, we don’t like to just finish and deliver. We are in the business of helping businesses grow and we’re in it for the long haul. This is why we have many businesses in Hawaii who host with us and hire us for monthly services when it comes to websites.",
+        "We offer a complete range of services to meet all your web design needs, from custom design to coding, API integration, and more. Our team specializes in connecting websites with mobile apps, ensuring seamless user experiences across all platforms.",
+        "With our monthly maintenance packages, we take care of everything from uptime monitoring to web hosting, so you can focus on running your business. We believe in full transparency, which is why we love screen sharing during the design process. This allows our clients to see exactly what they’re getting and ensures that we deliver the highest quality and value every time.",
+        "As a reliable web design agency located in Hawaii, we understand the local market and the unique needs of businesses in the area. Whether you’re targeting tourists or locals, we have the expertise to create the perfect web design for your business."
+      ]
+    }
+  ],
+  "cta": {
+    "heading": "Let’s connect — free consultation",
+    "paragraphs": [
+      "Our goal is to provide you with a customized solution that not only meets your needs but also fits within your budget. Whether you’re looking for a simple website refresh or a complete redesign, we’ll work with you to find the best approach to achieve your goals.",
+      "Take the first step towards your new website by scheduling a free consultation with us today. We look forward to helping you bring your vision to life and creating a stunning online presence for your business."
+    ]
+  },
+  "faq": "website-design",
+  "related": [
+    "blue-water-rafting",
+    "alpha-maui",
+    "national-benefit-brokers"
+  ],
+  "image": "../../assets/images/art/service-web-design.webp"
+}

@@ -1,0 +1,303 @@
+---
+import { Picture } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHero from '~/components/sections/shared/PageHero.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import FaqList from '~/components/sections/shared/FaqList.astro';
+import EnquirySection from '~/components/sections/shared/EnquirySection.astro';
+import { faqGroups } from '~/data/faqs';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const pad = (n: number) => String(n).padStart(2, '0');
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqGroups.flatMap((g) =>
+      g.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    ),
+  },
+];
+---
+
+<BaseLayout
+  title="Services | The Hawaii Agency"
+  description="How The Hawaii Agency helps businesses soar — web design, mobile apps, software, UI/UX, Google Ads, SEO, branding, ecommerce, cloud phone systems, hosting, server security, photography and videography."
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Our services"
+    title="How The Hawaii Agency helps businesses soar."
+    lead="From front-end design to backend infrastructure — design, development, marketing and hosting under one roof, with the founder on every project."
+    crumbs={[{ label: 'Services', href: '/services/' }]}
+    contour="summit"
+  >
+    <Button href="#faq" variant="ghost" size="l">Jump to FAQs</Button>
+  </PageHero>
+
+  <section class="sindex section--tight" aria-label="Service list">
+    <div class="wrap" data-hover-preview>
+      <ol role="list" class="sindex__list">
+        {
+          services.map((s, i) => (
+            <li data-preview-item={s.id}>
+              <a href={`/${s.id}/`} class="srow">
+                <span class="srow__n t-num">{pad(i + 1)}</span>
+                <span class="srow__name">{s.data.short}</span>
+                <span class="srow__sum">{s.data.summary}</span>
+                <span class="srow__thumb" aria-hidden="true">
+                  <Picture src={s.data.image} alt="" widths={[240, 480]} sizes="120px" formats={['avif']} fallbackFormat="webp" loading="lazy" />
+                </span>
+                <span class="srow__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="sindex__preview" data-preview-figure aria-hidden="true">
+        {
+          services.map((s) => (
+            <Picture src={s.data.image} alt="" widths={[480, 720]} sizes="340px" formats={['avif']} fallbackFormat="webp" loading="lazy" data-preview-key={s.id} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sfaqs section surface-white" id="faq" aria-labelledby="faqs-title">
+    <div class="wrap sfaqs__grid">
+      <aside class="sfaqs__nav">
+        <Eyebrow>Questions &amp; answers</Eyebrow>
+        <h2 id="faqs-title" class="t-h2" data-split>Everything you wanted to ask.</h2>
+        <nav aria-label="FAQ topics">
+          <ul role="list" class="sfaqs__topics">
+            {
+              faqGroups.map((g) => (
+                <li>
+                  <a href={`#${g.id}`} class="u-link">
+                    {g.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </aside>
+      <div class="sfaqs__groups">
+        {
+          faqGroups.map((g) => (
+            <section class="fgroup" id={g.id} aria-labelledby={`${g.id}-t`}>
+              <div class="fgroup__head">
+                <h3 id={`${g.id}-t`} class="t-h3">
+                  {g.title}
+                </h3>
+                {g.link && (
+                  <a href={g.link} class="u-link u-link--static fgroup__link">
+                    View service
+                  </a>
+                )}
+              </div>
+              {g.intro && <p class="t-body fgroup__intro">{g.intro}</p>}
+              <FaqList items={g.items} />
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <EnquirySection />
+</BaseLayout>
+
+<style>
+  .sindex__list {
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .srow {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--c-line);
+    transition: color 0.3s, padding 0.5s var(--ease-out);
+  }
+  .srow__n {
+    font-size: 0.8125rem;
+    color: var(--c-ink-3);
+  }
+  .srow__name {
+    font-size: clamp(2rem, 1.2rem + 3.4vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  .srow__sum {
+    grid-column: 2 / -1;
+    font-size: var(--fs-small);
+    color: var(--c-ink-2);
+    max-width: 38rem;
+  }
+  .srow__thumb {
+    grid-column: 3;
+    grid-row: 1;
+    width: 5rem;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .srow__thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .srow__arrow {
+    display: none;
+  }
+  .srow:hover,
+  .srow:focus-visible {
+    color: var(--c-blue);
+  }
+  .sindex__preview {
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .srow {
+      grid-template-columns: 4rem minmax(0, 1.2fr) minmax(0, 1fr) auto;
+      padding-block: 1.75rem;
+    }
+    .srow__sum {
+      grid-column: auto;
+    }
+    .srow__thumb {
+      display: none;
+    }
+    .srow__arrow {
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 1px solid var(--c-line-strong);
+      transition: background 0.3s, color 0.3s, transform 0.5s var(--ease-out);
+    }
+    .srow:hover {
+      padding-left: 1rem;
+    }
+    .srow:hover .srow__arrow {
+      background: var(--c-blue);
+      border-color: var(--c-blue);
+      color: var(--c-white);
+      transform: rotate(-45deg);
+    }
+  }
+  @media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+    .sindex :global([data-hover-preview]) {
+      position: relative;
+    }
+    .sindex__preview {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 4;
+      width: 21rem;
+      aspect-ratio: 4 / 3;
+      margin: -7.9rem 0 0 -10.5rem;
+      border-radius: var(--r-m);
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0;
+      scale: 0.6;
+      box-shadow: var(--shadow-lift);
+      transition: opacity 0.35s, scale 0.5s var(--ease-out);
+    }
+    .sindex__preview:global(.is-visible) {
+      opacity: 1;
+      scale: 1;
+    }
+    .sindex__preview :global(picture) {
+      display: contents;
+    }
+    .sindex__preview :global(img) {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sindex__preview :global(img.is-active) {
+      opacity: 1;
+    }
+  }
+  .sindex .wrap {
+    position: relative;
+  }
+
+  .sfaqs__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .sfaqs__nav {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+  .sfaqs__topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--c-ink-2);
+  }
+  .sfaqs__groups {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .fgroup {
+    display: grid;
+    gap: 1rem;
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+  .fgroup__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+  }
+  .fgroup__link {
+    color: var(--c-blue);
+    font-size: 0.9375rem;
+  }
+  .fgroup__intro {
+    max-width: 44rem;
+    margin-bottom: 0.75rem;
+  }
+  @media (min-width: 1024px) {
+    .sfaqs__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .sfaqs__nav {
+      grid-column: 1 / 5;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+      align-self: start;
+    }
+    .sfaqs__topics {
+      display: grid;
+      gap: 0.5rem;
+    }
+    .sfaqs__groups {
+      grid-column: 6 / -1;
+    }
+  }
+</style>

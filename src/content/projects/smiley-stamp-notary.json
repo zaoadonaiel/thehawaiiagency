@@ -1,0 +1,26 @@
+{
+  "name": "Smiley Stamp Notary",
+  "domain": "smileystamp.com",
+  "url": "https://smileystamp.com",
+  "location": "Lahaina, HI",
+  "image": "../../assets/images/projects/smiley-stamp-notary.jpg",
+  "imageAlt": "Smiley Stamp Notary website shown on a desktop display",
+  "services": [
+    "Website Rebuild",
+    "UX",
+    "Service & Pricing Presentation"
+  ],
+  "body": [
+    "Smiley Stamp Notary came to us like so many others do — tired of the limitations of GoDaddy’s clunky site builder. After trying to manage her brand online and facing mounting frustrations, Kafi Amico finally said enough was enough. That’s when she brought us in — and the transformation was instant.",
+    "We gave Smiley Stamp a full digital makeover, rebuilding the website from the ground up with clean design, modern UX, and a layout that clearly communicates her expertise and services in Maui’s competitive notary market. We also implemented a more effective way to present pricing, services, and contact details so clients can book in minutes.",
+    "The results? A professional brand presence that reflects the high level of trust, care, and aloha that Kafi delivers in every notarization. Whether in-person or remote, clients now experience a website that works as hard as she does."
+  ],
+  "result": "Traffic increased by 48% in the first 60 days.",
+  "metric": {
+    "value": "+48%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 9,
+  "featured": false,
+  "hawaii": true
+}

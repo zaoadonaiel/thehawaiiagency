@@ -1,0 +1,26 @@
+{
+  "name": "Johnny Hana",
+  "domain": "johnnyhana.com",
+  "url": "https://johnnyhana.com",
+  "location": "Hana, HI",
+  "image": "../../assets/images/projects/johnny-hana.jpg",
+  "imageAlt": "Johnny Hana website shown on a desktop display",
+  "services": [
+    "Brand Refresh",
+    "Packaging Design",
+    "Ecommerce"
+  ],
+  "body": [
+    "Johnny Hana came to us in a critical moment — frustrated by delays and missed opportunities from a previous designer, they had lost nearly six months of momentum during their crucial startup phase. Within just two weeks, we completely turned things around.",
+    "We revamped their entire digital presence, redesigned their packaging for a more premium and cohesive brand experience, and relaunched their eCommerce store with a faster, more user-friendly layout. From product visuals to functional performance, every detail was crafted to reflect the brand’s high-quality, Hawaii-grown identity.",
+    "Now, Johnny Hana is positioned for growth with a stunning brand, a smooth shopping experience, and a loyal customer base — a line of CBD, CBC, CBG, CBN, and CBT-infused topical products inspired by healing, crafted with aloha."
+  ],
+  "result": "Sales increased by 33% in the first 90 days.",
+  "metric": {
+    "value": "+33%",
+    "label": "sales in the first 90 days"
+  },
+  "order": 8,
+  "featured": false,
+  "hawaii": true
+}

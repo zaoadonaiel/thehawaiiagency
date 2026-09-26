@@ -1,0 +1,481 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Picture, getImage } from 'astro:assets';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Breadcrumbs from '~/components/ui/Breadcrumbs.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import EnquirySection from '~/components/sections/shared/EnquirySection.astro';
+
+export const getStaticPaths = (async () => {
+  const projects = (await getCollection('projects')).sort((a, b) => {
+    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    if (a.data.hawaii !== b.data.hawaii) return a.data.hawaii ? -1 : 1;
+    return a.data.order - b.data.order;
+  });
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      prev: projects[(i - 1 + projects.length) % projects.length],
+      next: projects[(i + 1) % projects.length],
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  prev: CollectionEntry<'projects'>;
+  next: CollectionEntry<'projects'>;
+}
+const { project, prev, next } = Astro.props;
+const d = project.data;
+const [lead, ...rest] = d.body;
+const og = await getImage({ src: d.image, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+
+const clip = (t: string) => (t.length <= 155 ? t : t.slice(0, 154).replace(/\s+\S*$/, '') + '…');
+const description = clip(lead ?? `${d.name} (${d.location}) — ${d.services.join(', ')} by The Hawaii Agency. ${d.result ?? ''}`.trim());
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: `${d.name} — case study`,
+    about: d.services,
+    creator: { '@id': 'https://thehawaiiagency.com/#organization' },
+    locationCreated: d.location,
+    url: new URL(Astro.url.pathname, Astro.site).href,
+    image: new URL(og.src, Astro.site).href,
+  },
+];
+---
+
+<BaseLayout
+  title={`${d.name} — Case Study`}
+  description={description}
+  image={og.src}
+  imageAlt={d.imageAlt}
+  schema={schema}
+>
+  <article>
+    <header class="ch" data-hero>
+      <div class="wrap ch__grid">
+        <div class="ch__crumbs" data-hero-item>
+          <Breadcrumbs items={[{ label: 'Case Studies', href: '/case-studies/' }, { label: d.name, href: `/case-studies/${project.id}/` }]} />
+        </div>
+        <Eyebrow class="ch__eyebrow">Case study · {d.location}</Eyebrow>
+        <h1 class="ch__title" data-split>{d.name}</h1>
+        {
+          d.metric && (
+            <div class="ch__metric" data-hero-item>
+              <p class="ch__metric-value t-num">{d.metric.value}</p>
+              <p class="ch__metric-label">{d.metric.label}</p>
+            </div>
+          )
+        }
+        <dl class="ch__meta" data-hero-item>
+          <div>
+            <dt class="t-label">Client</dt>
+            <dd>{d.name}</dd>
+          </div>
+          <div>
+            <dt class="t-label">Location</dt>
+            <dd>{d.location}</dd>
+          </div>
+          <div>
+            <dt class="t-label">Services</dt>
+            <dd>{d.services.join(', ')}</dd>
+          </div>
+          <div>
+            <dt class="t-label">Website</dt>
+            <dd>
+              <a href={d.url} target="_blank" rel="noopener noreferrer" class="u-link u-link--static">
+                {d.domain}<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <figure class="cimg wrap">
+      <div class="cimg__frame" data-clip style="--clip-radius: 28px">
+        <div class="cimg__inner" data-parallax="0.1">
+          <Picture
+            src={d.image}
+            alt={d.imageAlt}
+            widths={[640, 1000, 1400, 1880]}
+            sizes="(min-width: 1520px) 1520px, 100vw"
+            formats={['avif']} fallbackFormat="webp"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+      <figcaption class="t-small">{d.name} — project presentation · {d.domain}</figcaption>
+    </figure>
+
+    <section class="cstory section" aria-labelledby="story-title">
+      <div class="wrap cstory__grid">
+        <div class="cstory__head">
+          <Eyebrow index="01">The project</Eyebrow>
+          <h2 id="story-title" class="t-h3">Overview</h2>
+          <ul role="list" class="cstory__tags">
+            {d.services.map((s) => <li class="chip">{s}</li>)}
+          </ul>
+          {d.stack && <p class="t-small">Built with {d.stack.join(' · ')}</p>}
+        </div>
+        <div class="cstory__body">
+          {lead && <p class="t-lead" data-reveal>{lead}</p>}
+          {rest.map((p) => <p class="t-body" data-reveal>{p}</p>)}
+          {d.note && <p class="cstory__note t-small">{d.note}</p>}
+        </div>
+      </div>
+
+      {
+        d.highlights && (
+          <div class="wrap">
+            <h2 class="t-label chl__title">What we delivered</h2>
+            <ol class="chl" role="list" data-stagger>
+              {d.highlights.map((h, i) => (
+                <li>
+                  <span class="idx">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 class="t-h4">{h.title}</h3>
+                  <p class="t-small">{h.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )
+      }
+
+      {
+        d.gallery && (
+          <div class="wrap cgal">
+            {d.gallery.map((g) => (
+              <figure class="cgal__item" data-reveal>
+                <Picture src={g.src} alt={g.alt} widths={[500, 900]} sizes="(min-width: 1024px) 40vw, 100vw" formats={['avif']} fallbackFormat="webp" loading="lazy" />
+              </figure>
+            ))}
+          </div>
+        )
+      }
+    </section>
+
+    {
+      d.result && (
+        <section class="cres section surface-navy" aria-labelledby="result-title">
+          <div class="wrap cres__grid">
+            <Eyebrow index="02">Case results</Eyebrow>
+            <h2 id="result-title" class="sr-only">Case results</h2>
+            {d.metric && (
+              <p class="cres__big t-num" data-count>
+                {d.metric.value}
+              </p>
+            )}
+            <p class="cres__text t-h3" data-reveal>
+              {d.result}
+            </p>
+            <div class="cres__cta" data-reveal>
+              <Button href={d.url} variant="light" external icon="external">
+                Visit {d.domain}
+              </Button>
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </article>
+
+  <nav class="cnav" aria-label="More case studies">
+    <div class="wrap cnav__grid">
+      {
+        [
+          { p: prev, dir: 'Previous' },
+          { p: next, dir: 'Next' },
+        ].map(({ p, dir }) => (
+          <a href={`/case-studies/${p.id}/`} class:list={['cnav__link', `cnav__link--${dir.toLowerCase()}`]}>
+            <span class="cnav__thumb">
+              <Picture src={p.data.image} alt="" widths={[320, 640]} sizes="240px" formats={['avif']} fallbackFormat="webp" loading="lazy" />
+            </span>
+            <span class="cnav__text">
+              <span class="t-label">{dir} project</span>
+              <span class="cnav__name">{p.data.name}</span>
+              <span class="t-small">{p.data.location}</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+    <div class="wrap cnav__all">
+      <Button href="/case-studies/" variant="ghost">All case studies</Button>
+    </div>
+  </nav>
+
+  <EnquirySection heading="Want results like these?" />
+</BaseLayout>
+
+<style>
+  .ch {
+    padding: calc(var(--header-h) + 1.5rem) 0 var(--space-l);
+  }
+  .ch__grid {
+    display: grid;
+    gap: 1.25rem var(--gutter);
+  }
+  .ch__grid > :global(.ch__eyebrow) {
+    margin-top: clamp(1rem, 5vh, 3.5rem);
+  }
+  .ch__title {
+    font-size: clamp(3rem, 1rem + 8vw, 9.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.055em;
+    max-width: 14ch;
+  }
+  .ch__metric {
+    display: grid;
+    gap: 0.25rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--c-blue);
+  }
+  .ch__metric-value {
+    font-size: clamp(2.5rem, 1.6rem + 3vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--c-blue);
+  }
+  .ch__metric-label {
+    max-width: 22ch;
+    color: var(--c-ink-2);
+  }
+  .ch__meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem var(--gutter);
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+  .ch__meta dd {
+    margin-top: 0.35rem;
+    font-size: 0.975rem;
+  }
+  @media (min-width: 1024px) {
+    .ch__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+    }
+    .ch__crumbs,
+    .ch__grid > :global(.ch__eyebrow) {
+      grid-column: 1 / -1;
+    }
+    .ch__title {
+      grid-column: 1 / 9;
+    }
+    .ch__metric {
+      grid-column: 9 / -1;
+      margin-bottom: 1rem;
+    }
+    .ch__meta {
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .cimg {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .cimg__frame {
+    position: relative;
+    aspect-ratio: 1880 / 1576;
+    max-height: 92svh;
+    width: 100%;
+    border-radius: var(--r-l);
+    overflow: hidden;
+    background: var(--c-sky-100);
+  }
+  .cimg__inner {
+    position: absolute;
+    inset: -5% 0;
+  }
+  .cimg__inner :global(picture) {
+    display: contents;
+  }
+  .cimg__inner :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cstory__grid {
+    display: grid;
+    gap: var(--space-l) var(--gutter);
+  }
+  .cstory__head {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .cstory__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .cstory__body {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 44rem;
+  }
+  .cstory__note {
+    padding: 1rem 1.25rem;
+    border-radius: var(--r-m);
+    background: var(--c-sky-100);
+  }
+  @media (min-width: 1024px) {
+    .cstory__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .cstory__head {
+      grid-column: 1 / 5;
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+    .cstory__body {
+      grid-column: 6 / -1;
+    }
+  }
+  .chl__title {
+    margin: var(--space-xl) 0 1.25rem;
+  }
+  .chl {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 800px) {
+    .chl {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .chl {
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    }
+  }
+  .chl li {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    padding: 1.5rem;
+    border-radius: var(--r-l);
+    background: var(--c-white);
+    box-shadow: inset 0 0 0 1px var(--c-line);
+  }
+  .chl .idx {
+    color: var(--c-blue);
+    margin-bottom: 1rem;
+  }
+  .cgal {
+    margin-top: var(--space-xl);
+    display: grid;
+    justify-items: center;
+  }
+  .cgal__item {
+    width: min(100%, 34rem);
+    border-radius: var(--r-l);
+    overflow: hidden;
+    background: var(--c-sky-100);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .cres__grid {
+    display: grid;
+    gap: 1.5rem var(--gutter);
+  }
+  .cres__big {
+    font-size: clamp(5rem, 2rem + 14vw, 16rem);
+    line-height: 0.85;
+    letter-spacing: -0.065em;
+    color: var(--c-powder);
+  }
+  .cres__text {
+    max-width: 26ch;
+  }
+  .cres__cta :global(.btn) {
+    white-space: normal;
+  }
+  @media (min-width: 1024px) {
+    .cres__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+    }
+    .cres__grid > :global(.eyebrow) {
+      grid-column: 1 / -1;
+    }
+    .cres__big {
+      grid-column: 1 / 8;
+    }
+    .cres__text {
+      grid-column: 8 / -1;
+    }
+    .cres__cta {
+      grid-column: 8 / -1;
+    }
+  }
+
+  .cnav {
+    padding-block: var(--space-xl);
+  }
+  .cnav__grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 800px) {
+    .cnav__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .cnav__link--next {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+  }
+  .cnav__link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem;
+    border-radius: var(--r-l);
+    background: var(--c-white);
+    box-shadow: inset 0 0 0 1px var(--c-line);
+    transition: box-shadow 0.4s, transform 0.5s var(--ease-out);
+  }
+  .cnav__link:hover {
+    box-shadow: inset 0 0 0 1px var(--c-sky-300), var(--shadow-soft);
+    transform: translateY(-3px);
+  }
+  .cnav__thumb {
+    flex: none;
+    width: clamp(6rem, 12vw, 9rem);
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-s);
+    overflow: hidden;
+  }
+  .cnav__thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cnav__text {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .cnav__name {
+    font-size: var(--fs-h4);
+    letter-spacing: -0.02em;
+  }
+  .cnav__all {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+</style>

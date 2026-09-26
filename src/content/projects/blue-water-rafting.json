@@ -1,0 +1,25 @@
+{
+  "name": "Blue Water Rafting",
+  "domain": "bluewaterrafting.com",
+  "url": "https://bluewaterrafting.com",
+  "location": "Kihei, HI",
+  "image": "../../assets/images/projects/blue-water-rafting.jpg",
+  "imageAlt": "Blue Water Rafting website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Ecommerce",
+    "Ticketing"
+  ],
+  "body": [
+    "Blue Water Rafting, a trusted Maui tour company since 1985, now has a stunning new website that truly captures the adventure they offer along the remote Kanaio Coast — a hidden gem most tourists never get to see.",
+    "After years with an outdated site, we gave them a complete digital overhaul: bold visuals, clean user experience, and a fully integrated system for selling tickets, merchandise, and more. The new platform not only reflects the thrill of their tours but also makes it easier than ever for customers to book and explore."
+  ],
+  "result": "Traffic increased by 58% in the first 60 days.",
+  "metric": {
+    "value": "+58%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 4,
+  "featured": false,
+  "hawaii": true
+}

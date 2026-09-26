@@ -1,0 +1,35 @@
+---
+/** Small editorial label with an optional index, e.g. “(02) — What we do”. */
+interface Props {
+  index?: string;
+  class?: string;
+  as?: 'p' | 'span' | 'h2' | 'div';
+}
+const { index, class: className, as: Tag = 'p' } = Astro.props;
+---
+
+<Tag class:list={['eyebrow t-label', className]}>
+  {index && <span class="eyebrow__idx t-num">({index})</span>}
+  <span class="eyebrow__rule" aria-hidden="true"></span>
+  <span><slot /></span>
+</Tag>
+
+<style>
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .eyebrow__idx {
+    color: var(--c-blue);
+  }
+  :global(.surface-navy) .eyebrow__idx {
+    color: var(--c-sky-300);
+  }
+  .eyebrow__rule {
+    width: 2.25rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+</style>

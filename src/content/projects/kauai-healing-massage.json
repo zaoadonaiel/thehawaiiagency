@@ -1,0 +1,45 @@
+{
+  "name": "Kauai Healing Massage",
+  "domain": "kauaihealingmassage.com",
+  "url": "https://kauaihealingmassage.com",
+  "location": "Kapaʻa, HI",
+  "image": "../../assets/images/projects/kauai-healing-massage.jpg",
+  "imageAlt": "Kauai Healing Massage website shown on a desktop display",
+  "services": [
+    "Custom Website",
+    "Booking Flow",
+    "Google Ads",
+    "Brand Positioning"
+  ],
+  "body": [
+    "Kauai Healing Massage, led by seasoned therapist Katie, needed a modern, client-friendly website to reflect the premium, personalized care she offers to both locals and high-end visitors on the island of Kauai. Despite her exceptional skillset and loyal client base, she lacked a strong online presence and an effective way to attract and manage new appointments.",
+    "We built a clean, elegant website under a powerful domain name that speaks directly to her brand and services. The site highlights her healing philosophy, experience, and full range of therapeutic massage services — while making it easy for clients to connect and book directly.",
+    "Since launch, Katie has remained consistently booked thanks to strategic ad placement and a site that converts visits into appointments. Her practice now thrives with minimal downtime, and she’s grown her high-end clientele on the island — all while maintaining the personal, soulful care she’s known for."
+  ],
+  "result": "Calls increased by 45% in the first 60 days.",
+  "metric": {
+    "value": "+45%",
+    "label": "calls in the first 60 days"
+  },
+  "order": 4,
+  "featured": false,
+  "hawaii": true,
+  "highlights": [
+    {
+      "title": "Custom Website Design",
+      "text": "A beautiful, fast-loading, and mobile-friendly site that reflects the calm, restorative nature of her practice."
+    },
+    {
+      "title": "Smart Booking Flow",
+      "text": "Clear calls-to-action and simple mobile-first contact methods that make it frictionless for clients to reach out or schedule."
+    },
+    {
+      "title": "Google Ads Management",
+      "text": "We launched and now actively manage targeted Google Ads campaigns, resulting in consistent client bookings from both tourists and residents."
+    },
+    {
+      "title": "Brand Positioning",
+      "text": "From copy to structure, the site positions Katie as a trusted, high-end mobile massage therapist with deep roots in holistic healing and Ayurvedic practices."
+    }
+  ]
+}

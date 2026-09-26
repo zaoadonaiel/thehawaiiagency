@@ -1,0 +1,157 @@
+---
+/** Verbatim Google reviews drifting in two opposing currents. */
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Button from '~/components/ui/Button.astro';
+import { reviews, formatReviewDate } from '~/data/reviews';
+import { site } from '~/data/site';
+
+const rowA = reviews.filter((_, i) => i % 2 === 0);
+const rowB = reviews.filter((_, i) => i % 2 === 1);
+---
+
+<section class="river section surface-sky" aria-labelledby="river-title">
+  <div class="wrap river__head">
+    <div>
+      <Eyebrow index="07">Google reviews</Eyebrow>
+      <h2 id="river-title" class="t-h1 river__title" data-split>From business owners just like you.</h2>
+    </div>
+    <div class="river__score" data-reveal>
+      <p class="river__stars" aria-hidden="true">★★★★★</p>
+      <p class="t-body">{site.rating.summary}, based on {site.rating.count} reviews.</p>
+      <Button href="/reviews/" variant="ghost">Read more reviews</Button>
+    </div>
+  </div>
+
+  <!-- Accessible, readable list for assistive tech; the moving rows below are decorative copies -->
+  <ul class="sr-only">
+    {
+      reviews.map((r) => (
+        <li>
+          “{r.text}” — {r.name}, {formatReviewDate(r.date)}, posted on Google
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="river__rows" aria-hidden="true">
+    {
+      [rowA, rowB].map((row, ri) => (
+        <div class:list={['marquee', { 'marquee--reverse': ri === 1 }]} style={`--marquee-duration:${ri ? 90 : 110}s`}>
+          {[0, 1].map(() => (
+            <ul class="marquee__track river__track" role="list">
+              {row.map((r) => (
+                <li class="review">
+                  <p class="review__stars">★★★★★</p>
+                  <p class="review__text">{r.text}</p>
+                  <p class="review__by">
+                    <span class="review__avatar">{r.name.slice(0, 1).toUpperCase()}</span>
+                    <span>
+                      <span class="review__name">{r.name}</span>
+                      <span class="review__date">{formatReviewDate(r.date)} · Google</span>
+                    </span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .river {
+    overflow: clip;
+  }
+  .river__head {
+    display: grid;
+    gap: 2rem var(--gutter);
+    margin-bottom: var(--space-l);
+  }
+  .river__title {
+    margin-top: 1.25rem;
+    max-width: 13ch;
+  }
+  .river__score {
+    display: grid;
+    gap: 0.75rem;
+    align-content: end;
+    justify-items: start;
+    max-width: 22rem;
+  }
+  .river__stars {
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    color: var(--c-blue);
+  }
+  @media (min-width: 1024px) {
+    .river__head {
+      grid-template-columns: 1.5fr 1fr;
+      align-items: end;
+    }
+    .river__score {
+      justify-self: end;
+    }
+  }
+  .river__rows {
+    display: grid;
+    gap: 1rem;
+  }
+  .river__track {
+    gap: 1rem;
+    padding-right: 1rem;
+    align-items: stretch;
+  }
+  .review {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: clamp(18rem, 28vw, 25rem);
+    padding: 1.5rem;
+    border-radius: var(--r-m);
+    background: var(--c-white);
+    box-shadow: var(--shadow-soft);
+  }
+  .review__stars {
+    color: var(--c-blue);
+    letter-spacing: 0.12em;
+    font-size: 0.875rem;
+  }
+  .review__text {
+    font-size: 0.975rem;
+    line-height: 1.55;
+    color: var(--c-ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .review__by {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .review__avatar {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--c-sky-100);
+    color: var(--c-deep);
+    font-weight: 500;
+  }
+  .review__by > span:last-child {
+    display: grid;
+  }
+  .review__name {
+    font-size: 0.9375rem;
+  }
+  .review__date {
+    font-size: 0.8125rem;
+    color: var(--c-ink-3);
+  }
+</style>

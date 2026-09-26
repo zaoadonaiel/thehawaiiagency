@@ -1,0 +1,116 @@
+---
+import { socialPlans } from '~/data/social-plans';
+import Button from '~/components/ui/Button.astro';
+---
+
+<section class="splans section" aria-labelledby="splans-title">
+  <div class="wrap">
+    <h2 id="splans-title" class="sr-only">Social media marketing plans</h2>
+    <ol class="splans__grid" role="list" data-stagger>
+      {
+        socialPlans.map((p, i) => (
+          <li class:list={['sp', `sp--${i}`]}>
+            <p class="idx">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="sp__name">{p.name}</h3>
+            <p class="sp__price">
+              <strong>{p.price}</strong>
+              <span>/mo</span>
+            </p>
+            <ul role="list" class="sp__items">
+              {p.items.map((it) => (
+                <li>{it}</li>
+              ))}
+            </ul>
+            <Button href="/lets-meet/" variant={i === 0 ? 'light' : 'solid'}>
+              Talk about {p.name}
+            </Button>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .splans__grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 700px) {
+    .splans__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .splans__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .sp {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    border-radius: var(--r-l);
+    background: var(--c-white);
+    box-shadow: inset 0 0 0 1px var(--c-line);
+  }
+  .sp--0 {
+    background: var(--c-navy);
+    color: var(--c-white);
+    box-shadow: none;
+  }
+  .sp--1 {
+    background: var(--c-sky-100);
+  }
+  .sp__name {
+    margin-top: 2rem;
+    font-size: var(--fs-h3);
+    letter-spacing: -0.03em;
+    color: inherit;
+  }
+  .sp__price strong {
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+  }
+  .sp__price span {
+    opacity: 0.66;
+  }
+  .sp__items {
+    display: grid;
+    gap: 0.55rem;
+    margin-block: 1rem 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid currentColor;
+    border-color: rgb(27 39 52 / 0.12);
+    font-size: 0.9375rem;
+  }
+  .sp--0 .sp__items {
+    border-color: var(--c-line-light);
+    color: rgb(255 255 255 / 0.85);
+  }
+  .sp__items li {
+    display: grid;
+    grid-template-columns: 0.9rem 1fr;
+    gap: 0.5rem;
+  }
+  .sp__items li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-top: 0.55em;
+    border-radius: 50%;
+    background: var(--c-blue);
+  }
+  .sp--0 .sp__items li::before {
+    background: var(--c-sky-300);
+  }
+  .sp :global(.btn) {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+  .sp--0 .idx {
+    color: var(--c-sky-300);
+  }
+</style>

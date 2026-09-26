@@ -1,0 +1,49 @@
+{
+  "name": "Akamai Aerial",
+  "domain": "akamaiaerial.com",
+  "url": "https://akamaiaerial.com",
+  "location": "Honolulu, HI",
+  "image": "../../assets/images/projects/akamai-aerial.jpg",
+  "imageAlt": "Akamai Aerial website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Copywriting",
+    "SEO",
+    "Domain Strategy"
+  ],
+  "body": [
+    "When Akamai Aerial was ready to launch their new drone inspection business on Oahu, they needed a website that established trust, clearly explained their services, and helped generate leads from day one.",
+    "We built a modern, professional website that showcases their advanced drone capabilities — including thermal imaging, LiDAR mapping, and high-resolution aerial inspections for commercial buildings and infrastructure. The site was designed to look sharp, load fast, and rank well from the start. We also helped secure a strong domain name and ensured the site was set up for performance, security, and scalability from day one.",
+    "Akamai Aerial launched with a professional web presence that positions them as a trusted, FAA-certified drone inspection provider in Hawaii. They’re now well-equipped to serve commercial clients, contractors, and property managers across the island — with a website that works as hard as they do."
+  ],
+  "result": "Traffic increased by 24% in the first 60 days.",
+  "metric": {
+    "value": "+24%",
+    "label": "traffic in the first 60 days"
+  },
+  "order": 11,
+  "featured": false,
+  "hawaii": true,
+  "highlights": [
+    {
+      "title": "Built to convert",
+      "text": "A clean, mobile-friendly website built to highlight each service with clear calls-to-action."
+    },
+    {
+      "title": "Copy that builds trust",
+      "text": "Strong copywriting that educates clients while building trust and authority."
+    },
+    {
+      "title": "Search-ready structure",
+      "text": "SEO-optimized structure to ensure visibility for key services like roof and infrastructure inspections."
+    },
+    {
+      "title": "Easy booking",
+      "text": "Easy contact and consultation booking to capture leads."
+    },
+    {
+      "title": "Credible branding",
+      "text": "Branded design that reinforces credibility in a technical, high-stakes industry."
+    }
+  ]
+}

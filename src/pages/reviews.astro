@@ -1,0 +1,160 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHero from '~/components/sections/shared/PageHero.astro';
+import Button from '~/components/ui/Button.astro';
+import EnquirySection from '~/components/sections/shared/EnquirySection.astro';
+import { reviews, formatReviewDate } from '~/data/reviews';
+import { site } from '~/data/site';
+
+const [featured, ...others] = reviews;
+---
+
+<BaseLayout
+  title="Reviews | The Hawaii Agency"
+  description="5-star reviews — The Hawaii Agency’s reputation in Hawaii and beyond, in the words of business owners on Google."
+>
+  <PageHero
+    eyebrow="Google reviews"
+    title="5-star reviews."
+    lead={`Our reputation in Hawaii & beyond. ${site.rating.summary}, based on ${site.rating.count} reviews — here are some of them, word for word.`}
+    crumbs={[{ label: 'Reviews', href: '/reviews/' }]}
+    contour="oahu"
+  >
+    <Button href={site.googleReviewsUrl} variant="ghost" size="l" external icon="external">See all on Google</Button>
+  </PageHero>
+
+  <section class="rv section--tight" aria-label="Reviews">
+    <div class="wrap">
+      <figure class="rv-feature" data-reveal>
+        <p class="rv-feature__stars" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>
+          <p>“{featured.text}”</p>
+        </blockquote>
+        <figcaption>
+          <span class="rv-feature__name">{featured.name}</span>
+          <span class="t-small">{formatReviewDate(featured.date)} · Posted on Google</span>
+        </figcaption>
+      </figure>
+
+      <ul role="list" class="rv-grid">
+        {
+          others.map((r, i) => (
+            <li class:list={['rv-card', { 'rv-card--tint': i % 3 === 1 }]} data-reveal data-delay={String((i % 3) * 0.08)}>
+              <p class="rv-card__stars" aria-label="5 out of 5 stars">
+                ★★★★★
+              </p>
+              <blockquote>
+                <p>“{r.text}”</p>
+              </blockquote>
+              <p class="rv-card__by">
+                <span class="rv-card__avatar" aria-hidden="true">
+                  {r.name.slice(0, 1).toUpperCase()}
+                </span>
+                <span>
+                  <span class="rv-card__name">{r.name}</span>
+                  <span class="t-small">{formatReviewDate(r.date)} · Google</span>
+                </span>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="rv-note t-small">
+        Reviews are reproduced verbatim from the agency’s Google Business Profile, as displayed on the previous website.
+      </p>
+    </div>
+  </section>
+
+  <EnquirySection heading="Become our next five-star story." />
+</BaseLayout>
+
+<style>
+  .rv-feature {
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(1.75rem, 4vw, 4rem);
+    border-radius: var(--r-l);
+    background: var(--c-navy);
+    color: var(--c-white);
+    margin-bottom: var(--gutter);
+  }
+  .rv-feature__stars {
+    color: var(--c-sky-300);
+    letter-spacing: 0.14em;
+  }
+  .rv-feature blockquote p {
+    font-size: var(--fs-h3);
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    max-width: 34ch;
+    text-wrap: pretty;
+  }
+  .rv-feature figcaption {
+    display: grid;
+    gap: 0.2rem;
+  }
+  .rv-feature figcaption .t-small {
+    color: rgb(255 255 255 / 0.65);
+  }
+  .rv-feature__name {
+    font-size: 1.125rem;
+  }
+  .rv-grid {
+    columns: 1;
+    column-gap: var(--gutter);
+  }
+  @media (min-width: 700px) {
+    .rv-grid {
+      columns: 2;
+    }
+  }
+  @media (min-width: 1100px) {
+    .rv-grid {
+      columns: 3;
+    }
+  }
+  .rv-card {
+    break-inside: avoid;
+    display: grid;
+    gap: 1.1rem;
+    margin-bottom: var(--gutter);
+    padding: 1.75rem;
+    border-radius: var(--r-l);
+    background: var(--c-white);
+    box-shadow: inset 0 0 0 1px var(--c-line);
+  }
+  .rv-card--tint {
+    background: var(--c-sky-100);
+    box-shadow: none;
+  }
+  .rv-card__stars {
+    color: var(--c-blue);
+    letter-spacing: 0.14em;
+    font-size: 0.875rem;
+  }
+  .rv-card blockquote p {
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--c-ink);
+  }
+  .rv-card__by {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .rv-card__by > span:last-child {
+    display: grid;
+  }
+  .rv-card__avatar {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--c-navy);
+    color: var(--c-white);
+  }
+  .rv-note {
+    margin-top: 1rem;
+  }
+</style>

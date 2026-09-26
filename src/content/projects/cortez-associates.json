@@ -1,0 +1,25 @@
+{
+  "name": "Cortez & Associates",
+  "domain": "cortezassociates.com",
+  "url": "https://cortezassociates.com",
+  "location": "Rancho Cucamonga, CA",
+  "image": "../../assets/images/projects/cortez-associates.jpg",
+  "imageAlt": "Cortez & Associates website shown on a desktop display",
+  "services": [
+    "Web Design",
+    "Content Strategy"
+  ],
+  "body": [
+    "We partnered with Cortez & Associates, a trusted tax and business advisory firm based in Southern California, to design a clean, modern website that reflects their professionalism, expertise, and long-standing client relationships. Founded by seasoned accountant Luis Cortez, the firm serves individuals and businesses across California with a focus on clarity, compliance, and custom strategy.",
+    "The new site is designed to communicate trust and authority while making it easy for visitors to explore a wide range of services — from tax planning and audit support to outsourced CFO solutions and startup consulting. With an intuitive layout, service-focused content, and strong calls to action, the website now serves as a polished, client-ready hub for both new and existing relationships.",
+    "Cortez & Associates is well-positioned online to continue delivering the high-level advisory and financial guidance their clients have relied on for over a decade."
+  ],
+  "result": "Traffic increased by 17% in the first 30 days.",
+  "metric": {
+    "value": "+17%",
+    "label": "traffic in the first 30 days"
+  },
+  "order": 17,
+  "featured": false,
+  "hawaii": false
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Peace of Maui",
+  "domain": "peaceofmaui.com",
+  "url": "https://peaceofmaui.com",
+  "location": "Makawao, HI",
+  "image": "../../assets/images/projects/peace-of-maui.jpg",
+  "imageAlt": "Peace of Maui website shown on a desktop display",
+  "services": [
+    "Website Redesign",
+    "Photo Retouching",
+    "Google Ads"
+  ],
+  "body": [
+    "Peace of Maui came to us after learning the hard way that “my cousin’s friend can build a website” isn’t always a good strategy. Their previous site was poorly designed, slow, and misrepresented their unique Airbnb-style property in upcountry Maui.",
+    "We stepped in to completely redesign their website, elevate their branding with professional photo retouching, and launch a targeted Google Ads campaign. The results have been powerful: steady bookings year-round — including during the off-season — and a massive improvement in user experience.",
+    "With 15 beautiful units on 2 acres of Maui’s serene countryside, Peace of Maui is finally getting the visibility and traction it deserves."
+  ],
+  "result": "Google Ads increased bookings by 27% in the first 60 days.",
+  "metric": {
+    "value": "+27%",
+    "label": "bookings from Google Ads in the first 60 days"
+  },
+  "order": 10,
+  "featured": false,
+  "hawaii": true
+}
