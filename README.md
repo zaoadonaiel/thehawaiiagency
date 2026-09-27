@@ -43,7 +43,8 @@ PUBLIC_FORM_ENDPOINT=https://api.web3forms.com/submit
 PUBLIC_FORM_ACCESS_KEY=your-public-access-key
 ```
 
-Set the same variables in your host's environment settings, then rebuild.
+Set the same variables in your host's **build** environment settings, then rebuild. They are read at build time, so saving
+them alone does not change the live site.
 
 - **With an endpoint:** the form submits with `fetch`, validates accessibly, shows loading, success and error states,
   and only reports success on a 2xx response. It includes a honeypot field.
